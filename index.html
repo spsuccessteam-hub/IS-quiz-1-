@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IndigoSol — What's Your Relationship With Time For Yourself?</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cinzel:wght@400;500&family=Dancing+Script:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blush: #F5EBEC;
+    --rose: #E8D3CB;
+    --petal: #FDCDCD;
+    --lavender: #F9F3F7;
+    --cream: #FCFDF7;
+    --gold: #C9A96E;
+    --gold-light: #E8D5A3;
+    --mauve: #D4A8A8;
+    --text-dark: #5C4A4A;
+    --text-mid: #8B6F6F;
+    --text-light: #B89A9A;
+  }
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+font-family: ‘Cormorant Garamond’, serif;
+background: var(–cream);
+min-height: 100vh;
+overflow-x: hidden;
+color: var(–text-dark);
+}
+
+.bg-wash {
+position: fixed;
+inset: 0;
+z-index: 0;
+background:
+radial-gradient(ellipse 80% 60% at 20% 20%, rgba(253,205,205,0.45) 0%, transparent 60%),
+radial-gradient(ellipse 60% 70% at 80% 10%, rgba(249,243,247,0.6) 0%, transparent 55%),
+radial-gradient(ellipse 70% 50% at 60% 80%, rgba(232,211,203,0.35) 0%, transparent 60%),
+radial-gradient(ellipse 50% 60% at 10% 70%, rgba(245,235,236,0.5) 0%, transparent 55%),
+linear-gradient(160deg, #FDF0F0 0%, #F9F3F7 40%, #F5EBEC 70%, #FCFDF7 100%);
+}
+
+.stars {
+position: fixed;
+inset: 0;
+z-index: 0;
+pointer-events: none;
+}
+
+.star {
+position: absolute;
+color: var(–gold);
+animation: twinkle 3s ease-in-out infinite;
+opacity: 0;
+}
+
+@keyframes twinkle {
+0%, 100% { opacity: 0; transform: scale(0.8); }
+50% { opacity: 0.6; transform: scale(1.1); }
+}
+
+.petal-deco {
+position: fixed;
+pointer-events: none;
+z-index: 0;
+font-size: 20px;
+opacity: 0.1;
+animation: drift 8s ease-in-out infinite;
+}
+
+@keyframes drift {
+0%, 100% { transform: rotate(-5deg) translateY(0); }
+50% { transform: rotate(5deg) translateY(-12px); }
+}
+
+.container {
+position: relative;
+z-index: 1;
+max-width: 680px;
+margin: 0 auto;
+padding: 40px 24px 80px;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.header {
+text-align: center;
+margin-bottom: 44px;
+animation: fadeUp 1s ease forwards;
+}
+
+.brand-name {
+font-family: ‘Cinzel’, serif;
+font-size: clamp(26px, 6vw, 42px);
+font-weight: 400;
+color: var(–gold);
+letter-spacing: 0.15em;
+margin-bottom: 4px;
+}
+
+.brand-script {
+font-family: ‘Dancing Script’, cursive;
+font-size: clamp(15px, 3.5vw, 21px);
+color: var(–text-mid);
+font-weight: 400;
+margin-bottom: 28px;
+display: block;
+}
+
+.divider {
+display: flex;
+align-items: center;
+gap: 12px;
+justify-content: center;
+margin: 16px 0;
+}
+
+.divider-line {
+width: 50px;
+height: 1px;
+background: linear-gradient(90deg, transparent, var(–gold), transparent);
+}
+
+.divider-star { color: var(–gold); font-size: 13px; }
+
+.progress-wrap {
+width: 100%;
+max-width: 500px;
+margin-bottom: 32px;
+}
+
+.progress-label {
+font-family: ‘Dancing Script’, cursive;
+color: var(–text-light);
+font-size: 15px;
+text-align: center;
+margin-bottom: 10px;
+}
+
+.progress-bar-bg {
+width: 100%;
+height: 3px;
+background: rgba(201,169,110,0.18);
+border-radius: 10px;
+overflow: hidden;
+}
+
+.progress-bar-fill {
+height: 100%;
+background: linear-gradient(90deg, var(–rose), var(–gold));
+border-radius: 10px;
+transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card {
+width: 100%;
+max-width: 560px;
+background: rgba(252,253,247,0.88);
+backdrop-filter: blur(14px);
+border: 1px solid rgba(201,169,110,0.18);
+border-radius: 26px;
+padding: clamp(28px, 6vw, 50px);
+box-shadow:
+0 4px 32px rgba(200,160,160,0.12),
+0 1px 0 rgba(255,255,255,0.85) inset;
+animation: fadeUp 0.6s ease forwards;
+}
+
+.question-number {
+font-family: ‘Dancing Script’, cursive;
+color: var(–gold);
+font-size: 15px;
+margin-bottom: 14px;
+display: block;
+}
+
+.question-text {
+font-size: clamp(18px, 4vw, 26px);
+font-weight: 400;
+font-style: italic;
+color: var(–text-dark);
+line-height: 1.4;
+margin-bottom: 28px;
+}
+
+.options {
+display: flex;
+flex-direction: column;
+gap: 11px;
+}
+
+.option {
+display: flex;
+align-items: flex-start;
+gap: 14px;
+padding: 15px 18px;
+border: 1.5px solid rgba(201,169,110,0.18);
+border-radius: 14px;
+background: rgba(245,235,236,0.25);
+cursor: pointer;
+transition: all 0.3s ease;
+text-align: left;
+width: 100%;
+font-family: ‘Cormorant Garamond’, serif;
+}
+
+.option:hover {
+border-color: rgba(201,169,110,0.6);
+background: rgba(245,235,236,0.55);
+transform: translateX(4px);
+box-shadow: 0 3px 16px rgba(200,160,160,0.14);
+}
+
+.option.selected {
+border-color: var(–gold);
+background: linear-gradient(135deg, rgba(245,235,236,0.75), rgba(249,243,247,0.75));
+box-shadow: 0 4px 20px rgba(200,160,160,0.18);
+}
+
+.option-dot {
+width: 20px;
+height: 20px;
+min-width: 20px;
+border-radius: 50%;
+border: 1.5px solid rgba(201,169,110,0.35);
+margin-top: 2px;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: all 0.3s ease;
+background: transparent;
+}
+
+.option.selected .option-dot {
+background: var(–gold);
+border-color: var(–gold);
+}
+
+.option.selected .option-dot::after {
+content: ‘✦’;
+color: white;
+font-size: 9px;
+}
+
+.option-text {
+font-size: clamp(14px, 2.8vw, 17px);
+color: var(–text-dark);
+line-height: 1.55;
+font-weight: 300;
+}
+
+.nav-wrap {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-top: 28px;
+width: 100%;
+max-width: 560px;
+}
+
+.btn-back {
+font-family: ‘Dancing Script’, cursive;
+font-size: 16px;
+color: var(–text-light);
+background: none;
+border: none;
+cursor: pointer;
+padding: 8px 0;
+transition: color 0.3s ease;
+}
+
+.btn-back:hover { color: var(–text-mid); }
+
+.btn-next {
+font-family: ‘Cinzel’, serif;
+font-size: 12px;
+letter-spacing: 0.13em;
+color: white;
+background: linear-gradient(135deg, var(–mauve), var(–gold));
+border: none;
+border-radius: 50px;
+padding: 14px 34px;
+cursor: pointer;
+transition: all 0.3s ease;
+box-shadow: 0 4px 20px rgba(200,160,160,0.28);
+}
+
+.btn-next:hover {
+transform: translateY(-2px);
+box-shadow: 0 7px 26px rgba(200,160,160,0.38);
+}
+
+.btn-next:disabled {
+opacity: 0.35;
+cursor: not-allowed;
+transform: none;
+box-shadow: none;
+}
+
+/* Intro */
+.intro-icon {
+font-size: 34px;
+margin-bottom: 18px;
+display: block;
+animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+0%, 100% { transform: translateY(0); }
+50% { transform: translateY(-8px); }
+}
+
+.intro-title {
+font-size: clamp(20px, 4.5vw, 30px);
+font-weight: 400;
+font-style: italic;
+color: var(–text-dark);
+line-height: 1.35;
+margin-bottom: 20px;
+}
+
+.intro-body {
+font-size: clamp(15px, 3vw, 17px);
+color: var(–text-mid);
+line-height: 1.85;
+font-weight: 300;
+margin-bottom: 32px;
+}
+
+.intro-note {
+font-family: ‘Dancing Script’, cursive;
+font-size: 16px;
+color: var(–text-light);
+margin-bottom: 32px;
+display: block;
+}
+
+.btn-start {
+font-family: ‘Cinzel’, serif;
+font-size: 12px;
+letter-spacing: 0.15em;
+color: white;
+background: linear-gradient(135deg, var(–mauve), var(–gold));
+border: none;
+border-radius: 50px;
+padding: 16px 52px;
+cursor: pointer;
+transition: all 0.3s ease;
+box-shadow: 0 4px 24px rgba(200,160,160,0.32);
+}
+
+.btn-start:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 30px rgba(200,160,160,0.42);
+}
+
+/* Result */
+.result-card {
+width: 100%;
+max-width: 560px;
+background: rgba(252,253,247,0.92);
+backdrop-filter: blur(16px);
+border: 1px solid rgba(201,169,110,0.22);
+border-radius: 28px;
+padding: clamp(36px, 7vw, 58px);
+box-shadow: 0 8px 48px rgba(200,160,160,0.16);
+text-align: center;
+animation: fadeUp 0.8s ease forwards;
+}
+
+.result-eyebrow {
+font-family: ‘Dancing Script’, cursive;
+color: var(–text-light);
+font-size: 16px;
+margin-bottom: 6px;
+display: block;
+}
+
+.result-era {
+font-family: ‘Cinzel’, serif;
+font-size: clamp(20px, 5vw, 32px);
+font-weight: 500;
+color: var(–text-dark);
+line-height: 1.2;
+margin-bottom: 6px;
+}
+
+.result-tagline {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(14px, 3vw, 18px);
+font-style: italic;
+color: var(–gold);
+margin-bottom: 24px;
+}
+
+.result-divider {
+display: flex;
+align-items: center;
+gap: 12px;
+justify-content: center;
+margin: 0 auto 24px;
+}
+
+.result-message {
+font-size: clamp(15px, 2.8vw, 17px);
+color: var(–text-dark);
+line-height: 1.85;
+font-weight: 300;
+margin-bottom: 28px;
+text-align: left;
+}
+
+.result-nudge {
+background: linear-gradient(135deg, rgba(245,235,236,0.55), rgba(249,243,247,0.55));
+border: 1px solid rgba(201,169,110,0.18);
+border-radius: 16px;
+padding: 22px 26px;
+margin-bottom: 28px;
+text-align: left;
+}
+
+.result-nudge p {
+font-size: clamp(14px, 2.6vw, 16px);
+color: var(–text-mid);
+line-height: 1.75;
+font-style: italic;
+}
+
+.result-nudge strong {
+color: var(–gold);
+font-style: normal;
+}
+
+.btn-subscribe {
+font-family: ‘Cinzel’, serif;
+font-size: 12px;
+letter-spacing: 0.13em;
+color: white;
+background: linear-gradient(135deg, var(–mauve), var(–gold));
+border: none;
+border-radius: 50px;
+padding: 16px 40px;
+cursor: pointer;
+transition: all 0.3s ease;
+box-shadow: 0 4px 22px rgba(200,160,160,0.32);
+display: block;
+width: 100%;
+margin-bottom: 14px;
+text-decoration: none;
+text-align: center;
+}
+
+.btn-subscribe:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 30px rgba(200,160,160,0.42);
+}
+
+.btn-retake {
+font-family: ‘Dancing Script’, cursive;
+font-size: 17px;
+color: var(–text-light);
+background: none;
+border: none;
+cursor: pointer;
+transition: color 0.3s ease;
+display: block;
+width: 100%;
+text-align: center;
+padding: 8px;
+}
+
+.btn-retake:hover { color: var(–text-mid); }
+
+.footer {
+margin-top: 44px;
+text-align: center;
+}
+
+.footer p {
+font-family: ‘Dancing Script’, cursive;
+color: var(–text-light);
+font-size: 15px;
+}
+
+.footer .star-row {
+color: var(–gold);
+font-size: 11px;
+letter-spacing: 6px;
+margin-top: 8px;
+opacity: 0.55;
+}
+
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(22px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-enter { animation: fadeUp 0.5s ease forwards; }
+</style>
+
+</head>
+<body>
+
+<div class="bg-wash"></div>
+<div class="stars" id="stars"></div>
+
+<div class="petal-deco" style="top:6%; left:3%; animation-delay:0s;">🌸</div>
+<div class="petal-deco" style="top:22%; right:2%; animation-delay:2.5s;">🌸</div>
+<div class="petal-deco" style="bottom:22%; left:2%; animation-delay:4s;">🌸</div>
+<div class="petal-deco" style="bottom:6%; right:4%; animation-delay:1.5s;">🌸</div>
+
+<div class="container">
+
+  <div class="header">
+    <div class="brand-name">Indigo Sol</div>
+    <span class="brand-script">sent with love</span>
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-star">✦</span>
+      <div class="divider-line"></div>
+    </div>
+  </div>
+
+  <div id="quiz-content" style="width:100%; display:flex; flex-direction:column; align-items:center; gap:22px;"></div>
+
+  <div class="footer">
+    <p>Because YOUR life deserves to be romanticised</p>
+    <div class="star-row">✦ ✦ ✦</div>
+  </div>
+
+</div>
+
+<script>
+  // Stars
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 26; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.innerHTML = ['✦','✧','⋆','✦'][Math.floor(Math.random()*4)];
+    s.style.left = Math.random()*100+'%';
+    s.style.top = Math.random()*100+'%';
+    s.style.animationDelay = Math.random()*4+'s';
+    s.style.animationDuration = (2.5+Math.random()*3)+'s';
+    s.style.fontSize = (7+Math.random()*8)+'px';
+    starsEl.appendChild(s);
+  }
+
+  const questions = [
+    {
+      text: "Be honest. When you finally get a moment to yourself, what actually happens?",
+      options: [
+        { text: "I pick up my phone. I tell myself just five minutes. Then suddenly it is an hour later and I am not even sure what I looked at.", type: "scroll" },
+        { text: "I put something on in the background, a show, YouTube, anything, because silence feels uncomfortable.", type: "almost" },
+        { text: "I start doing something for myself then remember something I forgot to do for someone else and go do that instead.", type: "trying" },
+        { text: "I actually stop. Not perfectly, but I am getting better at actually being in the moment.", type: "rising" }
+      ]
+    },
+    {
+      text: "When someone asks if you make time for yourself, your honest inner response is...",
+      options: [
+        { text: "A small laugh. Time for myself? I am just trying to get through the day.", type: "scroll" },
+        { text: "I do, kind of. Does watching TV count? I hope it counts.", type: "almost" },
+        { text: "I want to. I keep almost doing it. I have a whole vision of what it would look like.", type: "trying" },
+        { text: "Yes, actually. I have made it a priority even when it is imperfect and brief.", type: "rising" }
+      ]
+    },
+    {
+      text: "Your phone is in your hand. You open an app without even deciding to. Which one is it?",
+      options: [
+        { text: "Instagram or TikTok. I am not even looking for anything. I am just... scrolling.", type: "scroll" },
+        { text: "YouTube. I tell myself I am relaxing but I am not really switching off.", type: "almost" },
+        { text: "My messages. Someone probably needs something. I should check.", type: "trying" },
+        { text: "Honestly I have been trying to put it down more. Some days are better than others.", type: "rising" }
+      ]
+    },
+    {
+      text: "The last time you did something purely for yourself, just because it felt good, was...",
+      options: [
+        { text: "I genuinely cannot remember. Does eating lunch count?", type: "scroll" },
+        { text: "A while ago. I think about it though. I have plans. I just have not started yet.", type: "almost" },
+        { text: "Recently but I felt guilty about it the whole time so I am not sure it counts.", type: "trying" },
+        { text: "Not that long ago actually. And it reminded me why it matters.", type: "rising" }
+      ]
+    },
+    {
+      text: "When you imagine having a slow intentional moment for yourself, what comes up first?",
+      options: [
+        { text: "A vague fantasy. Like a different version of my life that feels very far away.", type: "scroll" },
+        { text: "It sounds nice. I just do not know where I would fit it in.", type: "almost" },
+        { text: "I want it badly. I just keep waiting for life to calm down first.", type: "trying" },
+        { text: "I have started claiming those moments. They do not have to be perfect to count.", type: "rising" }
+      ]
+    },
+    {
+      text: "What would it actually mean to romanticise your life right now, honestly?",
+      options: [
+        { text: "Probably just putting the phone down for long enough to remember I exist outside of it.", type: "scroll" },
+        { text: "Doing something intentional instead of something passive. Choosing presence over background noise.", type: "almost" },
+        { text: "Stopping waiting for permission. Doing the thing without guilt for once.", type: "trying" },
+        { text: "Leaning further in. I have had a taste of it and I want more.", type: "rising" }
+      ]
+    }
+  ];
+
+  const results = {
+    scroll: {
+      era: "The Scroll & Scroll Again",
+      tagline: "you are not lazy, you are depleted",
+      message: "You are not someone who does not care about yourself. You are someone who is genuinely exhausted and the phone has become the path of least resistance. It asks nothing of you. It fills the silence. It feels like rest even when it leaves you feeling emptier than before. The truth is you are not choosing scrolling over yourself. You are choosing it because no one has handed you something better to reach for in that moment. That is exactly what IndigoSol is here to change.",
+      nudge: "Once a month something arrives that was written just for you. Not to perform, not to share, just to read, to breathe, and to remember that your life is worth being present for. <strong>That is your starting point. That is enough.</strong>"
+    },
+    almost: {
+      era: "The Almost There",
+      tagline: "you can see it, you just have not stepped in yet",
+      message: "You know what you want. You have the vision, the intention, maybe even the journal sitting on your bedside table still in its packaging. You are not someone who does not care about this. You are someone who keeps almost beginning. The gap between knowing and doing is smaller than you think. You do not need a perfect morning routine or a completely different life. You just need one small moment that proves to you that you are worth showing up for.",
+      nudge: "Your IndigoSol letter is exactly that moment. Something written for you, arriving when you least expect to need it and most do. <strong>Let it be the thing you actually open.</strong>"
+    },
+    trying: {
+      era: "The Beautifully Trying",
+      tagline: "you show up, even when guilt follows you in",
+      message: "You are doing more than you give yourself credit for. You light the candle and answer three messages. You start the journal entry and end up writing a to-do list. You carve out the time and then spend it wondering if you should be doing something else. The trying is real. The wanting is real. The only thing standing between you and actually receiving the moment is the belief that you have to earn it first. You do not. You never did.",
+      nudge: "IndigoSol is a letter that asks nothing of you except that you read it. No earning, no performing, no justifying. Just you, the words, and permission to let it land. <strong>You are allowed to receive this.</strong>"
+    },
+    rising: {
+      era: "The Romanticiser Rising",
+      tagline: "you are already living it, keep going",
+      message: "You have done the quiet work of choosing yourself, imperfectly, inconsistently, but genuinely. You know what it feels like to be present in your own life and you want more of it. You are not someone who needs convincing that this matters. You are someone who is ready to go deeper, to make the intention more consistent, to build a life that feels as meaningful on an ordinary Tuesday as it does in your favourite moments.",
+      nudge: "Your IndigoSol letter meets you in that deeper place every single month. Written for your specific energy, your life path, your moment. <strong>This is your next layer. Come in.</strong>"
+    }
+  };
+
+  let currentQ = -1;
+  let answers = [];
+  let selectedIdx = null;
+  let selectedType = null;
+
+  function getResult() {
+    const counts = { scroll: 0, almost: 0, trying: 0, rising: 0 };
+    answers.forEach(a => counts[a]++);
+    return Object.entries(counts).sort((a,b) => b[1]-a[1])[0][0];
+  }
+
+  function render() {
+    const content = document.getElementById('quiz-content');
+    content.innerHTML = '';
+
+    if (currentQ === -1) renderIntro(content);
+    else if (currentQ >= questions.length) renderResult(content);
+    else {
+      renderProgress(content);
+      renderQuestion(content);
+      renderNav(content);
+    }
+  }
+
+  function renderIntro(content) {
+    const card = document.createElement('div');
+    card.className = 'card fade-enter';
+    card.style.textAlign = 'center';
+    card.innerHTML = `
+      <span class="intro-icon">✦</span>
+      <h1 class="intro-title">What is your honest relationship with time for yourself?</h1>
+      <div class="divider" style="margin: 16px auto 20px;">
+        <div class="divider-line"></div>
+        <span class="divider-star">✦</span>
+        <div class="divider-line"></div>
+      </div>
+      <p class="intro-body">
+        Not the version you wish you had.<br>
+        Not the version that looks good.<br>
+        The real one.<br><br>
+        Six honest questions.<br>
+        No judgment here. Only recognition.
+      </p>
+      <span class="intro-note">be honest, that is where the magic starts</span>
+      <button class="btn-start" onclick="startQuiz()">I AM READY ✦</button>
+    `;
+    content.appendChild(card);
+  }
+
+  function renderProgress(content) {
+    const wrap = document.createElement('div');
+    wrap.className = 'progress-wrap fade-enter';
+    const pct = (currentQ / questions.length) * 100;
+    wrap.innerHTML = `
+      <div class="progress-label">question ${currentQ + 1} of ${questions.length}</div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" style="width:${pct}%"></div>
+      </div>
+    `;
+    content.appendChild(wrap);
+  }
+
+  function renderQuestion(content) {
+    const q = questions[currentQ];
+    const card = document.createElement('div');
+    card.className = 'card fade-enter';
+
+    const opts = q.options.map((opt, i) => `
+      <button class="option ${selectedIdx === i ? 'selected' : ''}" onclick="selectOpt(${i}, '${opt.type}')">
+        <div class="option-dot"></div>
+        <span class="option-text">${opt.text}</span>
+      </button>
+    `).join('');
+
+    card.innerHTML = `
+      <span class="question-number">✦ question ${currentQ + 1}</span>
+      <p class="question-text">${q.text}</p>
+      <div class="options">${opts}</div>
+    `;
+    content.appendChild(card);
+  }
+
+  function renderNav(content) {
+    const nav = document.createElement('div');
+    nav.className = 'nav-wrap';
+    const isLast = currentQ === questions.length - 1;
+    nav.innerHTML = `
+      ${currentQ > 0 ? '<button class="btn-back" onclick="goBack()">← back</button>' : '<div></div>'}
+      <button class="btn-next" onclick="goNext()" ${selectedIdx === null ? 'disabled' : ''}>
+        ${isLast ? 'SHOW ME MY RESULT ✦' : 'CONTINUE ✦'}
+      </button>
+    `;
+    content.appendChild(nav);
+  }
+
+  function renderResult(content) {
+    const type = getResult();
+    const r = results[type];
+
+    const card = document.createElement('div');
+    card.className = 'result-card fade-enter';
+    card.innerHTML = `
+      <span class="result-eyebrow">you are...</span>
+      <h2 class="result-era">${r.era}</h2>
+      <p class="result-tagline">${r.tagline}</p>
+      <div class="result-divider">
+        <div class="divider-line"></div>
+        <span class="divider-star">✦</span>
+        <div class="divider-line"></div>
+      </div>
+      <p class="result-message">${r.message}</p>
+      <div class="result-nudge">
+        <p>${r.nudge}</p>
+      </div>
+      <a href="https://indigosol.substack.com" class="btn-subscribe" target="_blank">
+        JOIN INDIGOSOL LETTERS ✦
+      </a>
+      <button class="btn-retake" onclick="retake()">take the quiz again</button>
+    `;
+    content.appendChild(card);
+  }
+
+  function startQuiz() {
+    currentQ = 0;
+    answers = [];
+    selectedIdx = null;
+    selectedType = null;
+    render();
+  }
+
+  function selectOpt(idx, type) {
+    selectedIdx = idx;
+    selectedType = type;
+    if (answers[currentQ] !== undefined) answers[currentQ] = type;
+    else answers.push(type);
+    render();
+  }
+
+  function goNext() {
+    if (selectedIdx === null) return;
+    currentQ++;
+    selectedIdx = null;
+    selectedType = null;
+    render();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function goBack() {
+    currentQ--;
+    answers.pop();
+    selectedIdx = null;
+    selectedType = null;
+    render();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function retake() {
+    currentQ = -1;
+    answers = [];
+    selectedIdx = null;
+    selectedType = null;
+    render();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  render();
+</script>
+
+</body>
+</html>
