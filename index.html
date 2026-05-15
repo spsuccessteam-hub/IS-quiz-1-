@@ -22,14 +22,17 @@
     --text-light: #B89A9A;
   }
 
-- { margin: 0; padding: 0; box-sizing: border-box; }
+- { margin: 0; padding: 0; box-sizing: border-box; -webkit-text-fill-color: inherit; }
+
+button { -webkit-appearance: none; appearance: none; }
 
 body {
 font-family: ‘Cormorant Garamond’, serif;
 background: var(–cream);
 min-height: 100vh;
 overflow-x: hidden;
-color: var(–text-dark);
+color: var(–text-dark) !important;
+-webkit-text-fill-color: var(–text-dark) !important;
 }
 
 .bg-wash {
@@ -53,7 +56,8 @@ pointer-events: none;
 
 .star {
 position: absolute;
-color: var(–gold);
+color: var(–gold) !important;
+-webkit-text-fill-color: var(–gold) !important;
 animation: twinkle 3s ease-in-out infinite;
 opacity: 0;
 }
@@ -100,7 +104,8 @@ animation: fadeUp 1s ease forwards;
 font-family: ‘Cinzel’, serif;
 font-size: clamp(26px, 6vw, 42px);
 font-weight: 500;
-color: var(–gold);
+color: var(–gold) !important;
+-webkit-text-fill-color: var(–gold) !important;
 letter-spacing: 0.15em;
 margin-bottom: 4px;
 }
@@ -108,7 +113,8 @@ margin-bottom: 4px;
 .brand-script {
 font-family: ‘Dancing Script’, cursive;
 font-size: clamp(15px, 3.5vw, 21px);
-color: var(–text-mid);
+color: var(–text-mid) !important;
+-webkit-text-fill-color: var(–text-mid) !important;
 font-weight: 400;
 margin-bottom: 28px;
 display: block;
@@ -139,7 +145,8 @@ margin-bottom: 32px;
 
 .progress-label {
 font-family: ‘Dancing Script’, cursive;
-color: var(–gold);
+color: var(–gold) !important;
+-webkit-text-fill-color: var(–gold) !important;
 font-size: 16px;
 text-align: center;
 margin-bottom: 10px;
@@ -177,7 +184,8 @@ animation: fadeUp 0.6s ease forwards;
 
 .question-number {
 font-family: ‘Dancing Script’, cursive;
-color: var(–gold);
+color: var(–gold) !important;
+-webkit-text-fill-color: var(–gold) !important;
 font-size: 16px;
 margin-bottom: 14px;
 display: block;
@@ -187,7 +195,8 @@ display: block;
 font-size: clamp(19px, 4vw, 27px);
 font-weight: 400;
 font-style: italic;
-color: var(–text-dark);
+color: var(–text-dark) !important;
+-webkit-text-fill-color: var(–text-dark) !important;
 line-height: 1.4;
 margin-bottom: 28px;
 }
@@ -222,7 +231,8 @@ box-shadow: 0 3px 16px rgba(200,160,160,0.14);
 }
 
 .option.selected {
-border-color: var(–gold);
+border-color: var(–gold) !important;
+-webkit-text-fill-color: var(–gold) !important;
 background: linear-gradient(135deg, rgba(245,235,236,0.75), rgba(249,243,247,0.75));
 box-shadow: 0 4px 20px rgba(200,160,160,0.18);
 }
@@ -243,20 +253,28 @@ background: transparent;
 
 .option.selected .option-dot {
 background: var(–gold);
-border-color: var(–gold);
+border-color: var(–gold) !important;
+-webkit-text-fill-color: var(–gold) !important;
 }
 
 .option.selected .option-dot::after {
 content: ‘✦’;
-color: white;
+color: white !important;
+-webkit-text-fill-color: white !important;
 font-size: 9px;
 }
 
 .option-text {
 font-size: clamp(15px, 2.8vw, 17px);
-color: var(–text-mid);
+color: var(–text-mid) !important;
+-webkit-text-fill-color: var(–text-mid) !important;
 line-height: 1.55;
 font-weight: 400;
+}
+
+button {
+-webkit-appearance: none;
+appearance: none;
 }
 
 /* Nav */
@@ -272,7 +290,8 @@ max-width: 560px;
 .btn-back {
 font-family: ‘Dancing Script’, cursive;
 font-size: 17px;
-color: var(–text-light);
+color: var(–text-light) !important;
+-webkit-text-fill-color: var(–text-light) !important;
 background: none;
 border: none;
 cursor: pointer;
@@ -286,7 +305,8 @@ transition: color 0.3s ease;
 font-family: ‘Cinzel’, serif;
 font-size: 12px;
 letter-spacing: 0.13em;
-color: white;
+color: white !important;
+-webkit-text-fill-color: white !important;
 background: linear-gradient(135deg, var(–mauve), var(–gold));
 border: none;
 border-radius: 50px;
@@ -313,7 +333,8 @@ box-shadow: none;
 font-size: 34px;
 margin-bottom: 18px;
 display: block;
-color: var(–gold);
+color: var(–gold) !important;
+-webkit-text-fill-color: var(–gold) !important;
 animation: float 4s ease-in-out infinite;
 }
 
@@ -326,14 +347,16 @@ animation: float 4s ease-in-out infinite;
 font-size: clamp(21px, 4.5vw, 31px);
 font-weight: 400;
 font-style: italic;
-color: var(–text-dark);
+color: var(–text-dark) !important;
+-webkit-text-fill-color: var(–text-dark) !important;
 line-height: 1.35;
 margin-bottom: 20px;
 }
 
 .intro-body {
 font-size: clamp(15px, 3vw, 18px);
-color: var(–text-mid);
+color: var(–text-mid) !important;
+-webkit-text-fill-color: var(–text-mid) !important;
 line-height: 1.9;
 font-weight: 300;
 margin-bottom: 12px;
@@ -342,7 +365,8 @@ margin-bottom: 12px;
 .intro-note {
 font-family: ‘Dancing Script’, cursive;
 font-size: 17px;
-color: var(–gold);
+color: var(–gold) !important;
+-webkit-text-fill-color: var(–gold) !important;
 margin-bottom: 32px;
 display: block;
 }
@@ -351,7 +375,8 @@ display: block;
 font-family: ‘Cinzel’, serif;
 font-size: 12px;
 letter-spacing: 0.15em;
-color: white;
+color: white !important;
+-webkit-text-fill-color: white !important;
 background: linear-gradient(135deg, var(–mauve), var(–gold));
 border: none;
 border-radius: 50px;
@@ -382,7 +407,8 @@ animation: fadeUp 0.8s ease forwards;
 
 .result-eyebrow {
 font-family: ‘Dancing Script’, cursive;
-color: var(–gold);
+color: var(–gold) !important;
+-webkit-text-fill-color: var(–gold) !important;
 font-size: 18px;
 margin-bottom: 8px;
 display: block;
@@ -392,7 +418,8 @@ display: block;
 font-family: ‘Cinzel’, serif;
 font-size: clamp(22px, 5vw, 34px);
 font-weight: 600;
-color: var(–gold-deep);
+color: var(–gold-deep) !important;
+-webkit-text-fill-color: var(–gold-deep) !important;
 line-height: 1.2;
 margin-bottom: 8px;
 }
@@ -401,13 +428,15 @@ margin-bottom: 8px;
 font-family: ‘Cormorant Garamond’, serif;
 font-size: clamp(15px, 3vw, 19px);
 font-style: italic;
-color: var(–text-mid);
+color: var(–text-mid) !important;
+-webkit-text-fill-color: var(–text-mid) !important;
 margin-bottom: 24px;
 }
 
 .result-message {
 font-size: clamp(15px, 2.8vw, 18px);
-color: var(–text-dark);
+color: var(–text-dark) !important;
+-webkit-text-fill-color: var(–text-dark) !important;
 line-height: 1.9;
 font-weight: 300;
 margin-bottom: 32px;
@@ -428,7 +457,8 @@ text-align: left;
 font-family: ‘Cinzel’, serif;
 font-size: 12px;
 letter-spacing: 0.12em;
-color: var(–gold);
+color: var(–gold) !important;
+-webkit-text-fill-color: var(–gold) !important;
 margin-bottom: 20px;
 display: block;
 text-align: center;
@@ -444,7 +474,8 @@ align-items: flex-start;
 .suggestion-item:last-child { margin-bottom: 0; }
 
 .suggestion-star {
-color: var(–gold);
+color: var(–gold) !important;
+-webkit-text-fill-color: var(–gold) !important;
 font-size: 13px;
 margin-top: 3px;
 min-width: 14px;
@@ -452,7 +483,8 @@ min-width: 14px;
 
 .suggestion-text {
 font-size: clamp(14px, 2.6vw, 16px);
-color: var(–text-mid);
+color: var(–text-mid) !important;
+-webkit-text-fill-color: var(–text-mid) !important;
 line-height: 1.7;
 font-weight: 300;
 }
@@ -461,7 +493,8 @@ font-weight: 300;
 font-family: ‘Cinzel’, serif;
 font-size: 11px;
 letter-spacing: 0.1em;
-color: var(–gold);
+color: var(–gold) !important;
+-webkit-text-fill-color: var(–gold) !important;
 font-weight: 600;
 display: block;
 margin-bottom: 3px;
@@ -481,7 +514,8 @@ font-family: ‘Cormorant Garamond’, serif;
 font-size: clamp(19px, 4vw, 26px);
 font-weight: 600;
 font-style: italic;
-color: var(–gold-deep);
+color: var(–gold-deep) !important;
+-webkit-text-fill-color: var(–gold-deep) !important;
 line-height: 1.6;
 margin-bottom: 0;
 text-align: center;
@@ -491,7 +525,8 @@ text-align: center;
 font-family: ‘Cinzel’, serif;
 font-size: 13px;
 letter-spacing: 0.15em;
-color: white;
+color: white !important;
+-webkit-text-fill-color: white !important;
 background: linear-gradient(135deg, var(–mauve), var(–gold));
 border: none;
 border-radius: 50px;
@@ -514,7 +549,8 @@ box-shadow: 0 8px 32px rgba(200,160,160,0.45);
 .btn-retake {
 font-family: ‘Dancing Script’, cursive;
 font-size: 17px;
-color: var(–text-light);
+color: var(–text-light) !important;
+-webkit-text-fill-color: var(–text-light) !important;
 background: none;
 border: none;
 cursor: pointer;
@@ -535,12 +571,14 @@ text-align: center;
 
 .footer p {
 font-family: ‘Dancing Script’, cursive;
-color: var(–text-light);
+color: var(–text-light) !important;
+-webkit-text-fill-color: var(–text-light) !important;
 font-size: 16px;
 }
 
 .footer .star-row {
-color: var(–gold);
+color: var(–gold) !important;
+-webkit-text-fill-color: var(–gold) !important;
 font-size: 11px;
 letter-spacing: 6px;
 margin-top: 8px;
