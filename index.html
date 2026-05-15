@@ -221,6 +221,9 @@ transition: all 0.3s ease;
 text-align: left;
 width: 100%;
 font-family: ‘Cormorant Garamond’, serif;
+color: var(–text-mid) !important;
+-webkit-text-fill-color: var(–text-mid) !important;
+user-select: none;
 }
 
 .option:hover {
@@ -307,13 +310,13 @@ font-size: 12px;
 letter-spacing: 0.13em;
 color: white !important;
 -webkit-text-fill-color: white !important;
-background: linear-gradient(135deg, var(–mauve), var(–gold));
+background: linear-gradient(135deg, #B08080, #8B6340);
 border: none;
 border-radius: 50px;
 padding: 14px 34px;
 cursor: pointer;
 transition: all 0.3s ease;
-box-shadow: 0 4px 20px rgba(200,160,160,0.28);
+box-shadow: 0 4px 20px rgba(150,100,80,0.35);
 }
 
 .btn-next:hover {
@@ -810,10 +813,10 @@ to { opacity: 1; transform: translateY(0); }
     const card = document.createElement('div');
     card.className = 'card fade-enter';
     const opts = q.options.map((opt, i) => `
-      <button class="option ${selectedIdx === i ? 'selected' : ''}" onclick="selectOpt(${i}, '${opt.type}')">
+      <div class="option ${selectedIdx === i ? 'selected' : ''}" onclick="selectOpt(${i}, '${opt.type}')">
         <div class="option-dot"></div>
         <span class="option-text">${opt.text}</span>
-      </button>
+      </div>
     `).join('');
     card.innerHTML = `
       <span class="question-number">✦ question ${currentQ + 1}</span>
