@@ -775,22 +775,22 @@ to { opacity: 1; transform: translateY(0); }
     card.className = 'card fade-enter';
     card.style.textAlign = 'center';
     card.innerHTML = `
-      <span class="intro-icon">✦</span>
-      <h1 class="intro-title">What is your honest relationship with time for yourself?</h1>
+      <span class="intro-icon" style="color:#C9A96E !important; -webkit-text-fill-color:#C9A96E !important;">✦</span>
+      <h1 class="intro-title" style="color:#5C4A4A !important; -webkit-text-fill-color:#5C4A4A !important;">What is your honest relationship with time for yourself?</h1>
       <div class="divider" style="margin: 16px auto 20px;">
         <div class="divider-line"></div>
-        <span class="divider-star">✦</span>
+        <span class="divider-star" style="color:#C9A96E !important; -webkit-text-fill-color:#C9A96E !important;">✦</span>
         <div class="divider-line"></div>
       </div>
-      <p class="intro-body">
+      <p class="intro-body" style="color:#8B6F6F !important; -webkit-text-fill-color:#8B6F6F !important;">
         Not the version you wish you had.<br>
         Not the version that looks good.<br>
         The real one.<br><br>
         Six honest questions.<br>
         No judgment here. Only recognition.
       </p>
-      <span class="intro-note">be honest, that is where the magic starts</span>
-      <button class="btn-start" onclick="startQuiz()">I AM READY ✦</button>
+      <span class="intro-note" style="color:#C9A96E !important; -webkit-text-fill-color:#C9A96E !important;">be honest, that is where the magic starts</span>
+      <button class="btn-start" onclick="startQuiz()" style="color:white !important; -webkit-text-fill-color:white !important;">I AM READY ✦</button>
     `;
     content.appendChild(card);
   }
@@ -815,12 +815,12 @@ to { opacity: 1; transform: translateY(0); }
     const opts = q.options.map((opt, i) => `
       <div class="option ${selectedIdx === i ? 'selected' : ''}" onclick="selectOpt(${i}, '${opt.type}')">
         <div class="option-dot"></div>
-        <span class="option-text">${opt.text}</span>
+        <span class="option-text" style="color:#8B6F6F !important; -webkit-text-fill-color:#8B6F6F !important;">${opt.text}</span>
       </div>
     `).join('');
     card.innerHTML = `
-      <span class="question-number">✦ question ${currentQ + 1}</span>
-      <p class="question-text">${q.text}</p>
+      <span class="question-number" style="color:#C9A96E !important; -webkit-text-fill-color:#C9A96E !important;">✦ question ${currentQ + 1}</span>
+      <p class="question-text" style="color:#5C4A4A !important; -webkit-text-fill-color:#5C4A4A !important;">${q.text}</p>
       <div class="options">${opts}</div>
     `;
     content.appendChild(card);
@@ -845,10 +845,10 @@ to { opacity: 1; transform: translateY(0); }
 
     const suggestionsHTML = r.suggestions.map(s => `
       <div class="suggestion-item">
-        <span class="suggestion-star">✦</span>
+        <span class="suggestion-star" style="color:#C9A96E !important; -webkit-text-fill-color:#C9A96E !important;">✦</span>
         <div>
-          <span class="suggestion-label">${s.label}</span>
-          <span class="suggestion-text">${s.text}</span>
+          <span class="suggestion-label" style="color:#C9A96E !important; -webkit-text-fill-color:#C9A96E !important;">${s.label}</span>
+          <span class="suggestion-text" style="color:#8B6F6F !important; -webkit-text-fill-color:#8B6F6F !important;">${s.text}</span>
         </div>
       </div>
     `).join('');
@@ -856,26 +856,26 @@ to { opacity: 1; transform: translateY(0); }
     const card = document.createElement('div');
     card.className = 'result-card fade-enter';
     card.innerHTML = `
-      <span class="result-eyebrow">you are...</span>
-      <h2 class="result-era">${r.era}</h2>
-      <p class="result-tagline">${r.tagline}</p>
+      <span class="result-eyebrow" style="color:#C9A96E !important; -webkit-text-fill-color:#C9A96E !important;">you are...</span>
+      <h2 class="result-era" style="color:#A8834A !important; -webkit-text-fill-color:#A8834A !important;">${r.era}</h2>
+      <p class="result-tagline" style="color:#8B6F6F !important; -webkit-text-fill-color:#8B6F6F !important;">${r.tagline}</p>
       <div class="divider" style="margin: 0 auto 24px;">
         <div class="divider-line"></div>
-        <span class="divider-star">✦</span>
+        <span class="divider-star" style="color:#C9A96E !important; -webkit-text-fill-color:#C9A96E !important;">✦</span>
         <div class="divider-line"></div>
       </div>
-      <p class="result-message">${r.message}</p>
+      <p class="result-message" style="color:#5C4A4A !important; -webkit-text-fill-color:#5C4A4A !important;">${r.message}</p>
       <div class="suggestions-box">
-        <span class="suggestions-title">THREE THINGS TO TRY THIS WEEK</span>
+        <span class="suggestions-title" style="color:#C9A96E !important; -webkit-text-fill-color:#C9A96E !important;">THREE THINGS TO TRY THIS WEEK</span>
         ${suggestionsHTML}
       </div>
       <div class="invitation-wrap">
-        <p class="invitation-text">${r.invitation}</p>
+        <p class="invitation-text" style="color:#A8834A !important; -webkit-text-fill-color:#A8834A !important;">${r.invitation}</p>
       </div>
-      <a href="https://www.patreon.com/cw/IndigoSol" class="btn-subscribe" target="_blank">
+      <a href="https://www.patreon.com/cw/IndigoSol" class="btn-subscribe" style="color:white !important; -webkit-text-fill-color:white !important;" target="_blank">
         JOIN INDIGOSOL LETTERS ✦
       </a>
-      <button class="btn-retake" onclick="retake()">take the quiz again</button>
+      <button class="btn-retake" onclick="retake()" style="color:#B89A9A !important; -webkit-text-fill-color:#B89A9A !important;">take the quiz again</button>
     `;
     content.appendChild(card);
   }
