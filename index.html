@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IndigoSol — What's Your Relationship With Time For Yourself?</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cinzel:wght@400;500&family=Dancing+Script:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cinzel:wght@400;500;600&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --blush: #F5EBEC;
@@ -14,6 +14,7 @@
     --lavender: #F9F3F7;
     --cream: #FCFDF7;
     --gold: #C9A96E;
+    --gold-deep: #A8834A;
     --gold-light: #E8D5A3;
     --mauve: #D4A8A8;
     --text-dark: #5C4A4A;
@@ -88,6 +89,7 @@ flex-direction: column;
 align-items: center;
 }
 
+/* Header */
 .header {
 text-align: center;
 margin-bottom: 44px;
@@ -97,7 +99,7 @@ animation: fadeUp 1s ease forwards;
 .brand-name {
 font-family: ‘Cinzel’, serif;
 font-size: clamp(26px, 6vw, 42px);
-font-weight: 400;
+font-weight: 500;
 color: var(–gold);
 letter-spacing: 0.15em;
 margin-bottom: 4px;
@@ -128,6 +130,7 @@ background: linear-gradient(90deg, transparent, var(–gold), transparent);
 
 .divider-star { color: var(–gold); font-size: 13px; }
 
+/* Progress */
 .progress-wrap {
 width: 100%;
 max-width: 500px;
@@ -136,8 +139,8 @@ margin-bottom: 32px;
 
 .progress-label {
 font-family: ‘Dancing Script’, cursive;
-color: var(–text-light);
-font-size: 15px;
+color: var(–gold);
+font-size: 16px;
 text-align: center;
 margin-bottom: 10px;
 }
@@ -157,12 +160,13 @@ border-radius: 10px;
 transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Card */
 .card {
 width: 100%;
 max-width: 560px;
 background: rgba(252,253,247,0.88);
 backdrop-filter: blur(14px);
-border: 1px solid rgba(201,169,110,0.18);
+border: 1px solid rgba(201,169,110,0.2);
 border-radius: 26px;
 padding: clamp(28px, 6vw, 50px);
 box-shadow:
@@ -174,13 +178,13 @@ animation: fadeUp 0.6s ease forwards;
 .question-number {
 font-family: ‘Dancing Script’, cursive;
 color: var(–gold);
-font-size: 15px;
+font-size: 16px;
 margin-bottom: 14px;
 display: block;
 }
 
 .question-text {
-font-size: clamp(18px, 4vw, 26px);
+font-size: clamp(19px, 4vw, 27px);
 font-weight: 400;
 font-style: italic;
 color: var(–text-dark);
@@ -188,6 +192,7 @@ line-height: 1.4;
 margin-bottom: 28px;
 }
 
+/* Options */
 .options {
 display: flex;
 flex-direction: column;
@@ -199,7 +204,7 @@ display: flex;
 align-items: flex-start;
 gap: 14px;
 padding: 15px 18px;
-border: 1.5px solid rgba(201,169,110,0.18);
+border: 1.5px solid rgba(201,169,110,0.2);
 border-radius: 14px;
 background: rgba(245,235,236,0.25);
 cursor: pointer;
@@ -248,12 +253,13 @@ font-size: 9px;
 }
 
 .option-text {
-font-size: clamp(14px, 2.8vw, 17px);
-color: var(–text-dark);
+font-size: clamp(15px, 2.8vw, 17px);
+color: var(–text-mid);
 line-height: 1.55;
-font-weight: 300;
+font-weight: 400;
 }
 
+/* Nav */
 .nav-wrap {
 display: flex;
 justify-content: space-between;
@@ -265,7 +271,7 @@ max-width: 560px;
 
 .btn-back {
 font-family: ‘Dancing Script’, cursive;
-font-size: 16px;
+font-size: 17px;
 color: var(–text-light);
 background: none;
 border: none;
@@ -274,7 +280,7 @@ padding: 8px 0;
 transition: color 0.3s ease;
 }
 
-.btn-back:hover { color: var(–text-mid); }
+.btn-back:hover { color: var(–gold); }
 
 .btn-next {
 font-family: ‘Cinzel’, serif;
@@ -307,6 +313,7 @@ box-shadow: none;
 font-size: 34px;
 margin-bottom: 18px;
 display: block;
+color: var(–gold);
 animation: float 4s ease-in-out infinite;
 }
 
@@ -316,7 +323,7 @@ animation: float 4s ease-in-out infinite;
 }
 
 .intro-title {
-font-size: clamp(20px, 4.5vw, 30px);
+font-size: clamp(21px, 4.5vw, 31px);
 font-weight: 400;
 font-style: italic;
 color: var(–text-dark);
@@ -325,17 +332,17 @@ margin-bottom: 20px;
 }
 
 .intro-body {
-font-size: clamp(15px, 3vw, 17px);
+font-size: clamp(15px, 3vw, 18px);
 color: var(–text-mid);
-line-height: 1.85;
+line-height: 1.9;
 font-weight: 300;
-margin-bottom: 32px;
+margin-bottom: 12px;
 }
 
 .intro-note {
 font-family: ‘Dancing Script’, cursive;
-font-size: 16px;
-color: var(–text-light);
+font-size: 17px;
+color: var(–gold);
 margin-bottom: 32px;
 display: block;
 }
@@ -359,7 +366,7 @@ transform: translateY(-2px);
 box-shadow: 0 8px 30px rgba(200,160,160,0.42);
 }
 
-/* Result */
+/* Result card */
 .result-card {
 width: 100%;
 max-width: 560px;
@@ -375,79 +382,123 @@ animation: fadeUp 0.8s ease forwards;
 
 .result-eyebrow {
 font-family: ‘Dancing Script’, cursive;
-color: var(–text-light);
-font-size: 16px;
-margin-bottom: 6px;
+color: var(–gold);
+font-size: 18px;
+margin-bottom: 8px;
 display: block;
 }
 
 .result-era {
 font-family: ‘Cinzel’, serif;
-font-size: clamp(20px, 5vw, 32px);
-font-weight: 500;
-color: var(–text-dark);
+font-size: clamp(22px, 5vw, 34px);
+font-weight: 600;
+color: var(–gold-deep);
 line-height: 1.2;
-margin-bottom: 6px;
+margin-bottom: 8px;
 }
 
 .result-tagline {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: clamp(14px, 3vw, 18px);
+font-size: clamp(15px, 3vw, 19px);
 font-style: italic;
-color: var(–gold);
+color: var(–text-mid);
 margin-bottom: 24px;
 }
 
-.result-divider {
-display: flex;
-align-items: center;
-gap: 12px;
-justify-content: center;
-margin: 0 auto 24px;
-}
-
 .result-message {
-font-size: clamp(15px, 2.8vw, 17px);
+font-size: clamp(15px, 2.8vw, 18px);
 color: var(–text-dark);
-line-height: 1.85;
+line-height: 1.9;
 font-weight: 300;
-margin-bottom: 28px;
+margin-bottom: 32px;
 text-align: left;
 }
 
-.result-nudge {
-background: linear-gradient(135deg, rgba(245,235,236,0.55), rgba(249,243,247,0.55));
-border: 1px solid rgba(201,169,110,0.18);
-border-radius: 16px;
-padding: 22px 26px;
-margin-bottom: 28px;
+/* Suggestions box */
+.suggestions-box {
+background: linear-gradient(135deg, rgba(245,235,236,0.5), rgba(249,243,247,0.5));
+border: 1px solid rgba(201,169,110,0.2);
+border-radius: 18px;
+padding: 28px 28px;
+margin-bottom: 32px;
 text-align: left;
 }
 
-.result-nudge p {
+.suggestions-title {
+font-family: ‘Cinzel’, serif;
+font-size: 12px;
+letter-spacing: 0.12em;
+color: var(–gold);
+margin-bottom: 20px;
+display: block;
+text-align: center;
+}
+
+.suggestion-item {
+display: flex;
+gap: 12px;
+margin-bottom: 16px;
+align-items: flex-start;
+}
+
+.suggestion-item:last-child { margin-bottom: 0; }
+
+.suggestion-star {
+color: var(–gold);
+font-size: 13px;
+margin-top: 3px;
+min-width: 14px;
+}
+
+.suggestion-text {
 font-size: clamp(14px, 2.6vw, 16px);
 color: var(–text-mid);
-line-height: 1.75;
-font-style: italic;
+line-height: 1.7;
+font-weight: 300;
 }
 
-.result-nudge strong {
+.suggestion-label {
+font-family: ‘Cinzel’, serif;
+font-size: 11px;
+letter-spacing: 0.1em;
 color: var(–gold);
-font-style: normal;
+font-weight: 600;
+display: block;
+margin-bottom: 3px;
+}
+
+/* Invitation — the hero moment */
+.invitation-wrap {
+margin-bottom: 28px;
+padding: 32px 28px;
+background: linear-gradient(135deg, rgba(201,169,110,0.08), rgba(232,211,203,0.15));
+border: 1.5px solid rgba(201,169,110,0.3);
+border-radius: 18px;
+}
+
+.invitation-text {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(19px, 4vw, 26px);
+font-weight: 600;
+font-style: italic;
+color: var(–gold-deep);
+line-height: 1.6;
+margin-bottom: 0;
+text-align: center;
 }
 
 .btn-subscribe {
 font-family: ‘Cinzel’, serif;
-font-size: 12px;
-letter-spacing: 0.13em;
+font-size: 13px;
+letter-spacing: 0.15em;
 color: white;
 background: linear-gradient(135deg, var(–mauve), var(–gold));
 border: none;
 border-radius: 50px;
-padding: 16px 40px;
+padding: 18px 44px;
 cursor: pointer;
 transition: all 0.3s ease;
-box-shadow: 0 4px 22px rgba(200,160,160,0.32);
+box-shadow: 0 4px 24px rgba(200,160,160,0.35);
 display: block;
 width: 100%;
 margin-bottom: 14px;
@@ -457,7 +508,7 @@ text-align: center;
 
 .btn-subscribe:hover {
 transform: translateY(-2px);
-box-shadow: 0 8px 30px rgba(200,160,160,0.42);
+box-shadow: 0 8px 32px rgba(200,160,160,0.45);
 }
 
 .btn-retake {
@@ -474,8 +525,9 @@ text-align: center;
 padding: 8px;
 }
 
-.btn-retake:hover { color: var(–text-mid); }
+.btn-retake:hover { color: var(–gold); }
 
+/* Footer */
 .footer {
 margin-top: 44px;
 text-align: center;
@@ -484,7 +536,7 @@ text-align: center;
 .footer p {
 font-family: ‘Dancing Script’, cursive;
 color: var(–text-light);
-font-size: 15px;
+font-size: 16px;
 }
 
 .footer .star-row {
@@ -572,7 +624,7 @@ to { opacity: 1; transform: translateY(0); }
     {
       text: "Your phone is in your hand. You open an app without even deciding to. Which one is it?",
       options: [
-        { text: "Instagram or TikTok. I am not even looking for anything. I am just... scrolling.", type: "scroll" },
+        { text: "Instagram or TikTok. I am not even looking for anything. I am just scrolling.", type: "scroll" },
         { text: "YouTube. I tell myself I am relaxing but I am not really switching off.", type: "almost" },
         { text: "My messages. Someone probably needs something. I should check.", type: "trying" },
         { text: "Honestly I have been trying to put it down more. Some days are better than others.", type: "rising" }
@@ -610,27 +662,47 @@ to { opacity: 1; transform: translateY(0); }
   const results = {
     scroll: {
       era: "The Scroll & Scroll Again",
-      tagline: "you are not lazy, you are depleted",
-      message: "You are not someone who does not care about yourself. You are someone who is genuinely exhausted and the phone has become the path of least resistance. It asks nothing of you. It fills the silence. It feels like rest even when it leaves you feeling emptier than before. The truth is you are not choosing scrolling over yourself. You are choosing it because no one has handed you something better to reach for in that moment. That is exactly what IndigoSol is here to change.",
-      nudge: "Once a month something arrives that was written just for you. Not to perform, not to share, just to read, to breathe, and to remember that your life is worth being present for. <strong>That is your starting point. That is enough.</strong>"
+      tagline: "you are ready for something that actually fills you up",
+      message: "You have been giving so much, to everyone, to everything, and when you finally get a moment the easiest thing is to disappear into the scroll. It makes sense. It asks nothing of you. But somewhere underneath that you already know there is something more nourishing waiting. You can feel it. That quiet pull toward something that actually lands, something that feels like it was made for this moment. That feeling is worth following.",
+      suggestions: [
+        { label: "BE STILL", text: "Make something warm and sit with it for ten minutes. Phone face down. No agenda. Just you and the quiet." },
+        { label: "MOVE", text: "Take a gentle walk. Put something soft and slow on or simply walk in the quiet and let your thoughts breathe." },
+        { label: "REFLECT", text: "Tonight write one sentence about how you actually feel. Not how you should feel. How you actually feel." }
+      ],
+      invitation: "And when you are ready for your own monthly moment, something beautiful written for your unique energy, to sit with slowly, and to remind you that you are seen, guided and loved..."
     },
     almost: {
       era: "The Almost There",
-      tagline: "you can see it, you just have not stepped in yet",
-      message: "You know what you want. You have the vision, the intention, maybe even the journal sitting on your bedside table still in its packaging. You are not someone who does not care about this. You are someone who keeps almost beginning. The gap between knowing and doing is smaller than you think. You do not need a perfect morning routine or a completely different life. You just need one small moment that proves to you that you are worth showing up for.",
-      nudge: "Your IndigoSol letter is exactly that moment. Something written for you, arriving when you least expect to need it and most do. <strong>Let it be the thing you actually open.</strong>"
+      tagline: "you are closer than you think",
+      message: "You have the vision. You know what a slower more intentional life feels like in your imagination and you want it. That wanting is a living thing inside you. It is real and it is leading you somewhere. Life keeps filling up but the pull toward something more meaningful keeps pulling back. That is your soul telling you something worth listening to. You are already on your way.",
+      suggestions: [
+        { label: "BE STILL", text: "Choose one ordinary moment today and make it intentional. Light a candle while you make your coffee. Sit by a window. Give that moment your full attention." },
+        { label: "MOVE", text: "Take a gentle walk. Put something soft and slow on or simply walk in the quiet and let your thoughts breathe." },
+        { label: "REFLECT", text: "Ask yourself this question and sit with it. What would I do with thirty minutes today if I truly believed I deserved them?" }
+      ],
+      invitation: "And when you are ready for your own monthly moment, something beautiful written for your unique energy, to sit with slowly, and to remind you that you are seen, guided and loved..."
     },
     trying: {
       era: "The Beautifully Trying",
-      tagline: "you show up, even when guilt follows you in",
-      message: "You are doing more than you give yourself credit for. You light the candle and answer three messages. You start the journal entry and end up writing a to-do list. You carve out the time and then spend it wondering if you should be doing something else. The trying is real. The wanting is real. The only thing standing between you and actually receiving the moment is the belief that you have to earn it first. You do not. You never did.",
-      nudge: "IndigoSol is a letter that asks nothing of you except that you read it. No earning, no performing, no justifying. Just you, the words, and permission to let it land. <strong>You are allowed to receive this.</strong>"
+      tagline: "you are someone who shows up, even when it is hard",
+      message: "You are making the effort. You carve out the time, you set the intention, and even when life pulls you back in you try again. That is not nothing. That is everything. The trying is the practice. The imperfect candle lit between messages, the journal opened for five minutes, the moment claimed even when it does not look the way you imagined. You are building something real and beautiful even when it does not feel that way yet.",
+      suggestions: [
+        { label: "BE STILL", text: "The next time you sit down for yourself, leave the guilt at the door. You do not have to earn this. Put something calming on, close your eyes for five minutes, and just breathe." },
+        { label: "MOVE", text: "Take a gentle walk. Put something soft and slow on or simply walk in the quiet and let your thoughts breathe." },
+        { label: "REFLECT", text: "Write down one thing you did this week just for yourself, no matter how small. Then write why it mattered. Because it did." }
+      ],
+      invitation: "And when you are ready for your own monthly moment, something beautiful written for your unique energy, to sit with slowly, and to remind you that you are seen, guided and loved..."
     },
     rising: {
       era: "The Romanticiser Rising",
-      tagline: "you are already living it, keep going",
-      message: "You have done the quiet work of choosing yourself, imperfectly, inconsistently, but genuinely. You know what it feels like to be present in your own life and you want more of it. You are not someone who needs convincing that this matters. You are someone who is ready to go deeper, to make the intention more consistent, to build a life that feels as meaningful on an ordinary Tuesday as it does in your favourite moments.",
-      nudge: "Your IndigoSol letter meets you in that deeper place every single month. Written for your specific energy, your life path, your moment. <strong>This is your next layer. Come in.</strong>"
+      tagline: "you are already living it and it looks beautiful on you",
+      message: "You have done something quietly powerful. You have made real moments for yourself and you know what it feels like to be present in your own life. That feeling is yours and you want more of it. More depth, more meaning, more moments that feel chosen and intentional and truly alive. You already know this matters. You have felt it. And now you are ready to go deeper into it.",
+      suggestions: [
+        { label: "BE STILL", text: "Create one moment this week that is entirely yours. Not productive. Not useful. Just beautiful. A bath, a book, a long breakfast. Claim it without explanation." },
+        { label: "MOVE", text: "Take a gentle walk. Put something soft and slow on or simply walk in the quiet and let your thoughts breathe." },
+        { label: "REFLECT", text: "Write about one moment recently where you felt truly present in your own life. What made it possible and how can you create more of that?" }
+      ],
+      invitation: "And when you are ready for your own monthly moment, something beautiful written for your unique energy, to sit with slowly, and to remind you that you are seen, guided and loved..."
     }
   };
 
@@ -648,7 +720,6 @@ to { opacity: 1; transform: translateY(0); }
   function render() {
     const content = document.getElementById('quiz-content');
     content.innerHTML = '';
-
     if (currentQ === -1) renderIntro(content);
     else if (currentQ >= questions.length) renderResult(content);
     else {
@@ -700,14 +771,12 @@ to { opacity: 1; transform: translateY(0); }
     const q = questions[currentQ];
     const card = document.createElement('div');
     card.className = 'card fade-enter';
-
     const opts = q.options.map((opt, i) => `
       <button class="option ${selectedIdx === i ? 'selected' : ''}" onclick="selectOpt(${i}, '${opt.type}')">
         <div class="option-dot"></div>
         <span class="option-text">${opt.text}</span>
       </button>
     `).join('');
-
     card.innerHTML = `
       <span class="question-number">✦ question ${currentQ + 1}</span>
       <p class="question-text">${q.text}</p>
@@ -733,22 +802,36 @@ to { opacity: 1; transform: translateY(0); }
     const type = getResult();
     const r = results[type];
 
+    const suggestionsHTML = r.suggestions.map(s => `
+      <div class="suggestion-item">
+        <span class="suggestion-star">✦</span>
+        <div>
+          <span class="suggestion-label">${s.label}</span>
+          <span class="suggestion-text">${s.text}</span>
+        </div>
+      </div>
+    `).join('');
+
     const card = document.createElement('div');
     card.className = 'result-card fade-enter';
     card.innerHTML = `
       <span class="result-eyebrow">you are...</span>
       <h2 class="result-era">${r.era}</h2>
       <p class="result-tagline">${r.tagline}</p>
-      <div class="result-divider">
+      <div class="divider" style="margin: 0 auto 24px;">
         <div class="divider-line"></div>
         <span class="divider-star">✦</span>
         <div class="divider-line"></div>
       </div>
       <p class="result-message">${r.message}</p>
-      <div class="result-nudge">
-        <p>${r.nudge}</p>
+      <div class="suggestions-box">
+        <span class="suggestions-title">THREE THINGS TO TRY THIS WEEK</span>
+        ${suggestionsHTML}
       </div>
-      <a href="https://indigosol.substack.com" class="btn-subscribe" target="_blank">
+      <div class="invitation-wrap">
+        <p class="invitation-text">${r.invitation}</p>
+      </div>
+      <a href="https://www.patreon.com/cw/IndigoSol" class="btn-subscribe" target="_blank">
         JOIN INDIGOSOL LETTERS ✦
       </a>
       <button class="btn-retake" onclick="retake()">take the quiz again</button>
@@ -757,16 +840,12 @@ to { opacity: 1; transform: translateY(0); }
   }
 
   function startQuiz() {
-    currentQ = 0;
-    answers = [];
-    selectedIdx = null;
-    selectedType = null;
+    currentQ = 0; answers = []; selectedIdx = null; selectedType = null;
     render();
   }
 
   function selectOpt(idx, type) {
-    selectedIdx = idx;
-    selectedType = type;
+    selectedIdx = idx; selectedType = type;
     if (answers[currentQ] !== undefined) answers[currentQ] = type;
     else answers.push(type);
     render();
@@ -774,27 +853,19 @@ to { opacity: 1; transform: translateY(0); }
 
   function goNext() {
     if (selectedIdx === null) return;
-    currentQ++;
-    selectedIdx = null;
-    selectedType = null;
+    currentQ++; selectedIdx = null; selectedType = null;
     render();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function goBack() {
-    currentQ--;
-    answers.pop();
-    selectedIdx = null;
-    selectedType = null;
+    currentQ--; answers.pop(); selectedIdx = null; selectedType = null;
     render();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function retake() {
-    currentQ = -1;
-    answers = [];
-    selectedIdx = null;
-    selectedType = null;
+    currentQ = -1; answers = []; selectedIdx = null; selectedType = null;
     render();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
