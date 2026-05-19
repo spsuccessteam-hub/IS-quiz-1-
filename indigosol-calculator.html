@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discover Your Life Path — IndigoSol Letters</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blush: #F5EBEC;
+    --blush-deep: #E8D3CB;
+    --petal: #FDCDCD;
+    --lavender: #F9F3F7;
+    --cream: #FCFDF7;
+    --gold: #C9A96E;
+    --gold-dark: #a8894f;
+    --dark-pink: #6B2D4A;
+    --text: #4a3728;
+    --text-light: #8a6f5e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    background-color: #F5EBEC;
+    background-image:
+      radial-gradient(ellipse at 20% 20%, rgba(253, 205, 205, 0.5) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(249, 243, 247, 0.6) 0%, transparent 50%),
+      radial-gradient(ellipse at 60% 10%, rgba(232, 211, 203, 0.4) 0%, transparent 40%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .stars {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .star {
+    position: absolute;
+    color: var(--gold);
+    font-size: 10px;
+    opacity: 0.4;
+    animation: twinkle 4s ease-in-out infinite;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.3); }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 580px;
+    padding: 40px 24px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 36px;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .sparkle-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .sparkle-line {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold));
+  }
+
+  .sparkle-line.right {
+    background: linear-gradient(to left, transparent, var(--gold));
+  }
+
+  .sparkle-symbol {
+    color: var(--gold);
+    font-size: 16px;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 7vw, 48px);
+    font-weight: 300;
+    color: #6B2D4A;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .subtitle {
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    color: #8a6f5e;
+    font-style: italic;
+    line-height: 1.6;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: rgba(252, 253, 247, 0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(201, 169, 110, 0.2);
+    border-radius: 24px;
+    padding: 40px 36px;
+    width: 100%;
+    box-shadow:
+      0 4px 30px rgba(107, 45, 74, 0.06),
+      0 1px 0 rgba(255,255,255,0.8) inset;
+    animation: fadeUp 0.9s ease 0.2s both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .form-group {
+    margin-bottom: 24px;
+  }
+
+  label {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 8px;
+  }
+
+  input {
+    width: 100%;
+    padding: 14px 18px;
+    background: rgba(245, 235, 236, 0.5);
+    border: 1px solid rgba(201, 169, 110, 0.25);
+    border-radius: 12px;
+    font-family: 'EB Garamond', serif;
+    font-size: 17px;
+    color: var(--text);
+    outline: none;
+    transition: all 0.3s ease;
+    -webkit-appearance: none;
+  }
+
+  input:focus {
+    border-color: var(--gold);
+    background: rgba(252, 253, 247, 0.9);
+    box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.12);
+  }
+
+  input::placeholder {
+    color: var(--text-light);
+    opacity: 0.6;
+    font-style: italic;
+  }
+
+  .date-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+  }
+
+  .date-field label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 16px 24px;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    border: none;
+    border-radius: 50px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: var(--cream);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .btn:hover::after { left: 100%; }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(168, 137, 79, 0.35);
+  }
+
+  .btn:active { transform: translateY(0); }
+
+  .error {
+    display: none;
+    background: rgba(107, 45, 74, 0.08);
+    border: 1px solid rgba(107, 45, 74, 0.2);
+    border-radius: 12px;
+    padding: 14px 18px;
+    color: var(--dark-pink);
+    font-family: 'EB Garamond', serif;
+    font-size: 15px;
+    font-style: italic;
+    text-align: center;
+    margin-top: 16px;
+  }
+
+  /* RESULT */
+  .result {
+    display: none;
+    width: 100%;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .result-card {
+    background: rgba(252, 253, 247, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(201, 169, 110, 0.25);
+    border-radius: 24px;
+    padding: 44px 36px;
+    text-align: center;
+    box-shadow: 0 4px 30px rgba(107, 45, 74, 0.08);
+  }
+
+  .result-greeting {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .result-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--dark-pink);
+    margin-bottom: 28px;
+  }
+
+  .number-display {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 28px;
+    box-shadow: 0 8px 30px rgba(168, 137, 79, 0.3);
+    position: relative;
+  }
+
+  .number-display::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(201,169,110,0.4), transparent);
+    z-index: -1;
+  }
+
+  .number-label {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(252,253,247,0.8);
+    margin-bottom: 2px;
+  }
+
+  .number-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1;
+  }
+
+  .result-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--dark-pink);
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .result-description {
+    font-family: 'EB Garamond', serif;
+    font-size: 17px;
+    color: var(--text-light);
+    line-height: 1.75;
+    font-style: italic;
+    margin-bottom: 28px;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0;
+  }
+
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,169,110,0.3), transparent);
+  }
+
+  .divider-star {
+    color: var(--gold);
+    font-size: 14px;
+    opacity: 0.7;
+  }
+
+  .invitation-text {
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    color: var(--text-light);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+
+  .btn-subscribe {
+    display: inline-block;
+    width: 100%;
+    padding: 18px 24px;
+    background: linear-gradient(135deg, var(--dark-pink) 0%, #8a3a5e 100%);
+    border: none;
+    border-radius: 50px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    color: var(--cream);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .btn-subscribe:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(107, 45, 74, 0.35);
+  }
+
+  .btn-recalculate {
+    background: transparent;
+    border: 1px solid rgba(201, 169, 110, 0.4);
+    border-radius: 50px;
+    padding: 12px 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: var(--gold-dark);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+
+  .btn-recalculate:hover {
+    background: rgba(201, 169, 110, 0.08);
+    border-color: var(--gold);
+  }
+
+  .footer-text {
+    text-align: center;
+    margin-top: 36px;
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    color: var(--text-light);
+    font-style: italic;
+    opacity: 0.8;
+    animation: fadeUp 1s ease 0.5s both;
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.7;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 480px) {
+    .card, .result-card { padding: 28px 20px; }
+    .container { padding: 28px 16px 48px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<div class="container">
+  <div class="header">
+    <div class="brand-name">IndigoSol Letters</div>
+    <div class="sparkle-row">
+      <div class="sparkle-line"></div>
+      <span class="sparkle-symbol">✦</span>
+      <div class="sparkle-line right"></div>
+    </div>
+    <h1>Discover Your<br><em>Life Path Number</em></h1>
+    <p class="subtitle">Your life path number is the heart of your numerology. Enter your details below to find yours.</p>
+  </div>
+
+  <!-- FORM -->
+  <div class="card" id="formCard">
+    <div class="form-group">
+      <label>Your First Name</label>
+      <input type="text" id="firstName" placeholder="Enter your name" autocomplete="given-name">
+    </div>
+
+    <div class="form-group">
+      <label>Your Date of Birth</label>
+      <div class="date-row">
+        <div class="date-field">
+          <label>Day</label>
+          <input type="number" id="day" placeholder="DD" min="1" max="31" inputmode="numeric">
+        </div>
+        <div class="date-field">
+          <label>Month</label>
+          <input type="number" id="month" placeholder="MM" min="1" max="12" inputmode="numeric">
+        </div>
+        <div class="date-field">
+          <label>Year</label>
+          <input type="number" id="year" placeholder="YYYY" min="1900" max="2010" inputmode="numeric">
+        </div>
+      </div>
+    </div>
+
+    <button class="btn" onclick="calculate()">✦ &nbsp; Reveal My Number</button>
+    <div class="error" id="errorMsg">Please enter your name and a valid date of birth to continue.</div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="result" id="resultCard">
+    <div class="result-card">
+      <div class="result-greeting">Your Life Path Number</div>
+      <div class="result-name" id="resultName"></div>
+
+      <div class="number-display">
+        <div class="number-label">Life Path</div>
+        <div class="number-value" id="resultNumber"></div>
+      </div>
+
+      <div class="result-title" id="resultTitle"></div>
+      <div class="result-description" id="resultDesc"></div>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-star">✦</span>
+        <div class="divider-line"></div>
+      </div>
+
+      <p class="invitation-text">
+        Each month IndigoSol Letters sends you a beautifully written letter created for your life path energy — blending angel numbers and oracle card wisdom into a message posted directly to your door.
+      </p>
+
+      <a href="https://www.patreon.com/cw/IndigoSol" target="_blank" class="btn-subscribe">
+        ✦ &nbsp; Subscribe and Receive Your Letter
+      </a>
+
+      <button class="btn-recalculate" onclick="reset()">Calculate Again</button>
+    </div>
+  </div>
+
+  <div class="footer-text">
+    sent with love
+    <div class="footer-brand">IndigoSol ✦ Because YOUR life deserves to be romanticised</div>
+  </div>
+</div>
+
+<script>
+  // Scatter stars
+  const starsContainer = document.getElementById('stars');
+  for (let i = 0; i < 28; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.innerHTML = ['✦', '✧', '·', '⋆'][Math.floor(Math.random() * 4)];
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.animationDelay = Math.random() * 4 + 's';
+    star.style.fontSize = (8 + Math.random() * 10) + 'px';
+    starsContainer.appendChild(star);
+  }
+
+  const lifePaths = {
+    1: {
+      title: "The Pioneer",
+      desc: "You are a natural leader — independent, driven, and here to forge your own path. You carry the energy of new beginnings and the courage to walk where others have not yet stepped."
+    },
+    2: {
+      title: "The Peacemaker",
+      desc: "You are deeply intuitive, empathetic, and gifted at bringing harmony to the world around you. Your strength lies in your sensitivity and your ability to hold space for others with grace."
+    },
+    3: {
+      title: "The Creator",
+      desc: "You are expressive, joyful, and lit from within by creativity. You are here to communicate, inspire, and bring beauty into the world through your voice, art, and authentic self-expression."
+    },
+    4: {
+      title: "The Builder",
+      desc: "You are grounded, devoted, and here to create something lasting. You carry the energy of structure, integrity, and quiet strength — the kind that builds foundations others can rest on."
+    },
+    5: {
+      title: "The Free Spirit",
+      desc: "You are adventurous, magnetic, and endlessly curious about life. You are here to experience, evolve, and inspire others to embrace change as the beautiful force it truly is."
+    },
+    6: {
+      title: "The Nurturer",
+      desc: "You are loving, responsible, and deeply devoted to those around you. You carry a natural gift for care and beauty, and your presence makes the world feel warmer and more whole."
+    },
+    7: {
+      title: "The Seeker",
+      desc: "You are deeply thoughtful, spiritually inclined, and drawn to truth beneath the surface. You are here to question, to seek, and to share the wisdom you gather along the way."
+    },
+    8: {
+      title: "The Powerhouse",
+      desc: "You are ambitious, magnetic, and here to step into true authority. You carry the energy of abundance and mastery — you are meant to lead, to build wealth, and to leave a powerful legacy."
+    },
+    9: {
+      title: "The Humanitarian",
+      desc: "You are compassionate, wise, and deeply connected to humanity as a whole. You are here to serve, to heal, and to remind others of the beauty that lives in giving without condition."
+    },
+    11: {
+      title: "The Illuminator",
+      desc: "You are a Master Number — a rare and gifted soul carrying heightened intuition, spiritual sensitivity, and a calling to inspire others. You are here to be a light in the world."
+    },
+    22: {
+      title: "The Master Builder",
+      desc: "You are a Master Number — a visionary with the practical power to build dreams into reality. You carry an extraordinary capacity to create things that serve and uplift humanity on a grand scale."
+    }
+  };
+
+  function reduceNumber(n) {
+    if (n === 11 || n === 22 || n === 33) return n;
+    if (n < 10) return n;
+    return reduceNumber(n.toString().split('').reduce((a, b) => a + parseInt(b), 0));
+  }
+
+  function calculateLifePath(day, month, year) {
+    const d = reduceNumber(day);
+    const m = reduceNumber(month);
+    const y = reduceNumber(year.toString().split('').reduce((a, b) => a + parseInt(b), 0));
+    return reduceNumber(d + m + y);
+  }
+
+  function calculate() {
+    const name = document.getElementById('firstName').value.trim();
+    const day = parseInt(document.getElementById('day').value);
+    const month = parseInt(document.getElementById('month').value);
+    const year = parseInt(document.getElementById('year').value);
+    const errorMsg = document.getElementById('errorMsg');
+
+    if (!name || !day || !month || !year || day < 1 || day > 31 || month < 1 || month > 12 || year < 1900 || year > 2010) {
+      errorMsg.style.display = 'block';
+      return;
+    }
+
+    errorMsg.style.display = 'none';
+    const lifePathNum = calculateLifePath(day, month, year);
+    const data = lifePaths[lifePathNum] || lifePaths[9];
+
+    document.getElementById('resultName').textContent = name;
+    document.getElementById('resultNumber').textContent = lifePathNum;
+    document.getElementById('resultTitle').textContent = data.title;
+    document.getElementById('resultDesc').textContent = data.desc;
+
+    document.getElementById('formCard').style.display = 'none';
+    document.querySelector('.header').style.display = 'none';
+    const result = document.getElementById('resultCard');
+    result.style.display = 'block';
+    result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function reset() {
+    document.getElementById('formCard').style.display = 'block';
+    document.querySelector('.header').style.display = 'block';
+    document.getElementById('resultCard').style.display = 'none';
+    document.getElementById('firstName').value = '';
+    document.getElementById('day').value = '';
+    document.getElementById('month').value = '';
+    document.getElementById('year').value = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
