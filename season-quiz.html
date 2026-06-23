@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indigo Sol — Find Your Season</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blush: #F5EBEC;
+    --cream: #FCFDF7;
+    --gold: #C9A96E;
+    --gold-light: #e8d4b0;
+    --text-dark: #3a2e2e;
+    --text-mid: #6b5b5b;
+    --text-light: #a08c8c;
+  }
+
+  body {
+    background-color: var(--cream);
+    color: var(--text-dark);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+
+  .quiz-wrap {
+    max-width: 640px;
+    width: 100%;
+  }
+
+  /* HEADER */
+  .quiz-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .brand-symbol {
+    font-size: 1.4rem;
+    color: var(--gold);
+    letter-spacing: 0.4em;
+    display: block;
+    margin-bottom: 1.2rem;
+  }
+
+  .brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    margin-bottom: 2rem;
+  }
+
+  .quiz-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.25;
+    color: var(--text-dark);
+    margin-bottom: 1.2rem;
+  }
+
+  .quiz-intro {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--text-mid);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .gold-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 1.8rem auto;
+  }
+
+  /* EMAIL SCREEN */
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  .email-screen {
+    background: var(--blush);
+    border-radius: 2px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+
+  .email-screen h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7rem;
+    font-weight: 400;
+    margin-bottom: 0.6rem;
+    color: var(--text-dark);
+  }
+
+  .email-screen p {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    margin-bottom: 1.8rem;
+    line-height: 1.7;
+  }
+
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+
+  input[type="text"],
+  input[type="email"] {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    background: var(--cream);
+    border: 1px solid var(--gold-light);
+    border-radius: 1px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  input:focus { border-color: var(--gold); }
+  input::placeholder { color: var(--text-light); }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.85rem 2.2rem;
+    background: var(--gold);
+    color: var(--cream);
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 1px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    width: 100%;
+  }
+
+  .btn-primary:hover { background: #b8904f; transform: translateY(-1px); }
+
+  .privacy-note {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-top: 0.8rem;
+  }
+
+  /* QUESTION SCREEN */
+  .progress-bar-wrap {
+    margin-bottom: 2.2rem;
+  }
+
+  .progress-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .progress-bar {
+    height: 1px;
+    background: var(--gold-light);
+    border-radius: 1px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--gold);
+    transition: width 0.4s ease;
+  }
+
+  .question-number {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+
+  .question-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.3rem, 3.5vw, 1.65rem);
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--text-dark);
+    margin-bottom: 1.8rem;
+  }
+
+  .options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .option-btn {
+    display: block;
+    width: 100%;
+    padding: 0.95rem 1.2rem;
+    background: transparent;
+    border: 1px solid var(--gold-light);
+    border-radius: 1px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s;
+    line-height: 1.5;
+  }
+
+  .option-btn:hover {
+    background: var(--blush);
+    border-color: var(--gold);
+    color: var(--text-dark);
+  }
+
+  .option-btn.selected {
+    background: var(--blush);
+    border-color: var(--gold);
+    color: var(--text-dark);
+  }
+
+  .option-btn .option-letter {
+    color: var(--gold);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    margin-right: 0.6rem;
+    font-weight: 400;
+  }
+
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.8rem;
+  }
+
+  .btn-back {
+    background: none;
+    border: none;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    color: var(--text-light);
+    cursor: pointer;
+    text-transform: uppercase;
+    padding: 0;
+    transition: color 0.2s;
+  }
+
+  .btn-back:hover { color: var(--text-mid); }
+
+  .btn-next {
+    display: inline-block;
+    padding: 0.75rem 1.8rem;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 1px;
+  }
+
+  .btn-next:hover, .btn-next:not(:disabled):hover {
+    background: var(--gold);
+    color: var(--cream);
+  }
+
+  .btn-next:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  /* RESULT SCREEN */
+  .result-screen {
+    text-align: center;
+  }
+
+  .result-symbol {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .result-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .result-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 6vw, 3rem);
+    font-weight: 300;
+    color: var(--text-dark);
+    margin-bottom: 0.4rem;
+  }
+
+  .result-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--text-mid);
+    margin-bottom: 1.5rem;
+  }
+
+  .result-card {
+    background: var(--blush);
+    padding: 2rem 1.8rem;
+    border-radius: 2px;
+    margin: 1.5rem 0;
+    text-align: left;
+  }
+
+  .result-description {
+    font-size: 0.92rem;
+    line-height: 1.85;
+    color: var(--text-mid);
+    margin-bottom: 1.5rem;
+  }
+
+  .result-trio {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .trio-item {
+    text-align: center;
+  }
+
+  .trio-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .trio-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--text-dark);
+  }
+
+  .result-cta-wrap {
+    margin-top: 2rem;
+  }
+
+  .result-cta-text {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+  }
+
+  .btn-subscribe {
+    display: inline-block;
+    padding: 0.95rem 2.5rem;
+    background: var(--gold);
+    color: var(--cream);
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 1px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+
+  .btn-subscribe:hover { background: #b8904f; transform: translateY(-1px); }
+
+  .retake-link {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.78rem;
+    color: var(--text-light);
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .retake-link:hover { color: var(--text-mid); }
+
+  .footer-symbol {
+    text-align: center;
+    margin-top: 2.5rem;
+    font-size: 0.8rem;
+    color: var(--gold);
+    letter-spacing: 0.3em;
+  }
+
+  .tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-top: 0.4rem;
+    letter-spacing: 0.05em;
+  }
+
+  .error-msg {
+    font-size: 0.78rem;
+    color: #c0736b;
+    margin-top: 0.4rem;
+    display: none;
+  }
+
+  @media (max-width: 480px) {
+    .result-trio { grid-template-columns: 1fr; gap: 0.8rem; }
+    .email-screen { padding: 2rem 1.4rem; }
+    .result-card { padding: 1.5rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+<div class="quiz-wrap">
+
+  <!-- HEADER -->
+  <div class="quiz-header">
+    <span class="brand-symbol">✦ ✦ ✦</span>
+    <div class="brand-name">Indigo Sol</div>
+    <h1 class="quiz-title">Discover Your Season</h1>
+    <div class="gold-rule"></div>
+    <p class="quiz-intro">Life moves in seasons. Some invite growth. Some invite healing. Some ask us to build. Some ask us to release.<br><br>This reflection will help you discover the season you are moving through right now.</p>
+  </div>
+
+  <!-- EMAIL SCREEN -->
+  <div class="screen active" id="screen-email">
+    <div class="email-screen">
+      <h2>Before we begin</h2>
+      <p>Enter your name and email so we can send you your result and a little more about your season.</p>
+      <div class="field-group">
+        <input type="text" id="input-name" placeholder="Your first name" autocomplete="given-name">
+        <input type="email" id="input-email" placeholder="Your email address" autocomplete="email">
+      </div>
+      <p class="error-msg" id="email-error">Please enter your name and a valid email address.</p>
+      <button class="btn-primary" onclick="startQuiz()">Begin the Reflection</button>
+      <p class="privacy-note">Your details are safe. No spam, ever.</p>
+    </div>
+  </div>
+
+  <!-- QUESTION SCREEN -->
+  <div class="screen" id="screen-question">
+    <div class="progress-bar-wrap">
+      <div class="progress-label">
+        <span>Your reflection</span>
+        <span id="progress-text">1 of 8</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width: 12.5%"></div>
+      </div>
+    </div>
+
+    <div class="question-number" id="q-number">Question 1</div>
+    <div class="question-text" id="q-text"></div>
+    <div class="options-list" id="q-options"></div>
+
+    <div class="nav-row">
+      <button class="btn-back" id="btn-back" onclick="goBack()">← Back</button>
+      <button class="btn-next" id="btn-next" onclick="goNext()" disabled>Continue</button>
+    </div>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div class="screen" id="screen-result">
+    <div class="result-screen">
+      <span class="result-symbol" id="result-symbol"></span>
+      <div class="result-label">Your Current Season</div>
+      <div class="result-name" id="result-name"></div>
+      <div class="result-subtitle" id="result-subtitle"></div>
+      <div class="gold-rule"></div>
+
+      <div class="result-card">
+        <p class="result-description" id="result-description"></p>
+        <div class="result-trio">
+          <div class="trio-item">
+            <span class="trio-label">Gift</span>
+            <span class="trio-value" id="result-gift"></span>
+          </div>
+          <div class="trio-item">
+            <span class="trio-label">Shadow</span>
+            <span class="trio-value" id="result-shadow"></span>
+          </div>
+          <div class="trio-item">
+            <span class="trio-label">Invitation</span>
+            <span class="trio-value" id="result-invitation"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-cta-wrap">
+        <p class="result-cta-text">Your Indigo Sol letter is written for exactly this season. Each month, a personal letter arrives at your door, carrying the energy of your current chapter and an invitation to go deeper.</p>
+        <a href="https://indigosol.com.au" class="btn-subscribe" target="_blank">Receive Your Monthly Letter — $15.95 AUD</a>
+        <span class="retake-link" onclick="retakeQuiz()">Retake the reflection</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-symbol">
+    ✦
+    <div class="tagline">We need your light. Allow the stillness.</div>
+  </div>
+
+</div>
+
+<script>
+  const questions = [
+    {
+      text: "Right now, I feel most drawn to:",
+      options: [
+        { label: "A new possibility or fresh beginning.", archetype: "Dreamer" },
+        { label: "Exploring something unfamiliar or expanding my horizons.", archetype: "Explorer" },
+        { label: "Caring for myself or the people I love.", archetype: "Nurturer" },
+        { label: "Creating stability and making steady progress.", archetype: "Builder" },
+        { label: "Letting go of something that no longer fits.", archetype: "Phoenix" },
+        { label: "Understanding something more deeply.", archetype: "Sage" },
+        { label: "Sharing my gifts or stepping into visibility.", archetype: "Lightkeeper" },
+        { label: "Resting, healing or restoring my energy.", archetype: "Restorer" }
+      ]
+    },
+    {
+      text: "The challenge I am currently facing is:",
+      options: [
+        { label: "Believing in what's possible.", archetype: "Dreamer" },
+        { label: "Leaving my comfort zone.", archetype: "Explorer" },
+        { label: "Setting healthy boundaries.", archetype: "Nurturer" },
+        { label: "Staying consistent.", archetype: "Builder" },
+        { label: "Embracing change.", archetype: "Phoenix" },
+        { label: "Finding clarity.", archetype: "Sage" },
+        { label: "Being seen.", archetype: "Lightkeeper" },
+        { label: "Giving myself permission to rest.", archetype: "Restorer" }
+      ]
+    },
+    {
+      text: "If I had an unexpected free day, I would most likely:",
+      options: [
+        { label: "Dream about future possibilities.", archetype: "Dreamer" },
+        { label: "Go somewhere new or learn something.", archetype: "Explorer" },
+        { label: "Spend time with loved ones.", archetype: "Nurturer" },
+        { label: "Work on a project or goal.", archetype: "Builder" },
+        { label: "Declutter or make changes.", archetype: "Phoenix" },
+        { label: "Read, reflect or journal.", archetype: "Sage" },
+        { label: "Create, teach or share something.", archetype: "Lightkeeper" },
+        { label: "Rest and recharge.", archetype: "Restorer" }
+      ]
+    },
+    {
+      text: "The lesson life seems to be teaching me right now is:",
+      options: [
+        { label: "Trust.", archetype: "Dreamer" },
+        { label: "Courage.", archetype: "Explorer" },
+        { label: "Compassion.", archetype: "Nurturer" },
+        { label: "Patience.", archetype: "Builder" },
+        { label: "Surrender.", archetype: "Phoenix" },
+        { label: "Wisdom.", archetype: "Sage" },
+        { label: "Authenticity.", archetype: "Lightkeeper" },
+        { label: "Self-care.", archetype: "Restorer" }
+      ]
+    },
+    {
+      text: "I most need encouragement around:",
+      options: [
+        { label: "Beginning.", archetype: "Dreamer" },
+        { label: "Exploring.", archetype: "Explorer" },
+        { label: "Receiving.", archetype: "Nurturer" },
+        { label: "Persisting.", archetype: "Builder" },
+        { label: "Releasing.", archetype: "Phoenix" },
+        { label: "Understanding.", archetype: "Sage" },
+        { label: "Expressing.", archetype: "Lightkeeper" },
+        { label: "Recovering.", archetype: "Restorer" }
+      ]
+    },
+    {
+      text: "Which statement feels most true?",
+      options: [
+        { label: "Something new is calling me.", archetype: "Dreamer" },
+        { label: "I feel ready to expand.", archetype: "Explorer" },
+        { label: "My relationships need attention.", archetype: "Nurturer" },
+        { label: "I am building something important.", archetype: "Builder" },
+        { label: "I am changing.", archetype: "Phoenix" },
+        { label: "I am seeking deeper meaning.", archetype: "Sage" },
+        { label: "I feel called to share more of myself.", archetype: "Lightkeeper" },
+        { label: "I need healing or renewal.", archetype: "Restorer" }
+      ]
+    },
+    {
+      text: "When life feels difficult, I tend to:",
+      options: [
+        { label: "Retreat into imagination.", archetype: "Dreamer" },
+        { label: "Look for a new path.", archetype: "Explorer" },
+        { label: "Care for others first.", archetype: "Nurturer" },
+        { label: "Work harder.", archetype: "Builder" },
+        { label: "Start over.", archetype: "Phoenix" },
+        { label: "Analyse the situation.", archetype: "Sage" },
+        { label: "Hide my voice.", archetype: "Lightkeeper" },
+        { label: "Withdraw to recover.", archetype: "Restorer" }
+      ]
+    },
+    {
+      text: "Right now, what feels most important?",
+      options: [
+        { label: "Possibility.", archetype: "Dreamer" },
+        { label: "Growth.", archetype: "Explorer" },
+        { label: "Connection.", archetype: "Nurturer" },
+        { label: "Progress.", archetype: "Builder" },
+        { label: "Transformation.", archetype: "Phoenix" },
+        { label: "Understanding.", archetype: "Sage" },
+        { label: "Purpose.", archetype: "Lightkeeper" },
+        { label: "Renewal.", archetype: "Restorer" }
+      ]
+    }
+  ];
+
+  const archetypes = {
+    Dreamer: {
+      symbol: "🌱",
+      name: "The Dreamer",
+      subtitle: "New Beginnings and Inner Vision",
+      description: "You are moving through a season of new beginnings. Something is trying to emerge, a possibility, a vision, a chapter that has not yet begun. This season is asking you to trust what you are imagining even before you can see it clearly. You do not need all the answers to take the first step.",
+      gift: "Hope and creativity.",
+      shadow: "Waiting for permission.",
+      invitation: "Trust the beginning."
+    },
+    Explorer: {
+      symbol: "🧭",
+      name: "The Explorer",
+      subtitle: "Growth and Expansion",
+      description: "You are moving through a season of growth. The old map no longer works and something is calling you toward the unfamiliar. This is not a sign that something is wrong. It is a sign that you are ready to expand beyond what has felt comfortable. Growth requires movement.",
+      gift: "Curiosity and courage.",
+      shadow: "Restlessness.",
+      invitation: "Trust the unknown."
+    },
+    Nurturer: {
+      symbol: "🏡",
+      name: "The Nurturer",
+      subtitle: "Care, Connection and Emotional Depth",
+      description: "You are moving through a season of tending. Something, whether yourself, a relationship, a dream or a space, needs your care. This season is teaching you that love includes receiving and that the most sustainable form of giving begins with you.",
+      gift: "Compassion and presence.",
+      shadow: "Overgiving.",
+      invitation: "Receive as freely as you give."
+    },
+    Builder: {
+      symbol: "🛠",
+      name: "The Builder",
+      subtitle: "Structure and Foundations",
+      description: "You are moving through a season of creating foundations. This chapter is asking for commitment, patience and steady progress. While growth may feel slow at times, meaningful things are often built one step at a time. Consistency is its own form of devotion.",
+      gift: "Discipline and reliability.",
+      shadow: "Perfectionism and burnout.",
+      invitation: "Trust the process."
+    },
+    Phoenix: {
+      symbol: "🔥",
+      name: "The Phoenix",
+      subtitle: "Transformation and Rebirth",
+      description: "You are moving through a season of transformation. Something is ending, changing or being released to make room for what comes next. This season asks for courage, trust and surrender. Letting go is not losing. It is making room.",
+      gift: "Resilience and renewal.",
+      shadow: "Resisting change.",
+      invitation: "Trust what is unfolding."
+    },
+    Sage: {
+      symbol: "🕯",
+      name: "The Sage",
+      subtitle: "Clarity, Wisdom and Perspective",
+      description: "You are moving through a season of reflection. Life is asking you to slow down, seek wisdom and find meaning within your experience. The answers you are looking for will come through stillness, not through more searching. Go within.",
+      gift: "Discernment and insight.",
+      shadow: "Overthinking.",
+      invitation: "Trust the wisdom emerging."
+    },
+    Lightkeeper: {
+      symbol: "✨",
+      name: "The Lightkeeper",
+      subtitle: "Visibility and Expression",
+      description: "You are moving through a season of visibility. Your gifts are not meant to stay hidden. This season is a call toward authentic expression, service and the courage to be seen. The world benefits when you stop dimming your light.",
+      gift: "Leadership and authenticity.",
+      shadow: "Playing small.",
+      invitation: "Share your gifts."
+    },
+    Restorer: {
+      symbol: "🌙",
+      name: "The Restorer",
+      subtitle: "Healing, Rest and Renewal",
+      description: "You are moving through a season of restoration. After effort, change or struggle, life is asking you to rest, heal and integrate. This is not a pause from growth. It is an essential part of it. You are allowed to rest before you earn it.",
+      gift: "Healing and acceptance.",
+      shadow: "Guilt around slowing down.",
+      invitation: "Rest without apology."
+    }
+  };
+
+  let currentQ = 0;
+  let answers = [];
+  let userName = '';
+  let userEmail = '';
+
+  const letters = ['A','B','C','D','E','F','G','H'];
+
+  function startQuiz() {
+    const nameVal = document.getElementById('input-name').value.trim();
+    const emailVal = document.getElementById('input-email').value.trim();
+    const errorEl = document.getElementById('email-error');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!nameVal || !emailRegex.test(emailVal)) {
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    errorEl.style.display = 'none';
+    userName = nameVal;
+    userEmail = emailVal;
+    answers = [];
+    currentQ = 0;
+
+    showScreen('screen-question');
+    renderQuestion();
+  }
+
+  function renderQuestion() {
+    const q = questions[currentQ];
+    document.getElementById('q-number').textContent = 'Question ' + (currentQ + 1);
+    document.getElementById('q-text').textContent = q.text;
+    document.getElementById('progress-text').textContent = (currentQ + 1) + ' of 8';
+    document.getElementById('progress-fill').style.width = ((currentQ + 1) / 8 * 100) + '%';
+
+    const optionsEl = document.getElementById('q-options');
+    optionsEl.innerHTML = '';
+
+    q.options.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'option-btn';
+      if (answers[currentQ] === i) btn.classList.add('selected');
+      btn.innerHTML = '<span class="option-letter">' + letters[i] + '</span>' + opt.label;
+      btn.onclick = () => selectOption(i);
+      optionsEl.appendChild(btn);
+    });
+
+    document.getElementById('btn-next').disabled = answers[currentQ] === undefined;
+    document.getElementById('btn-back').style.visibility = currentQ === 0 ? 'hidden' : 'visible';
+  }
+
+  function selectOption(index) {
+    answers[currentQ] = index;
+    document.querySelectorAll('.option-btn').forEach((btn, i) => {
+      btn.classList.toggle('selected', i === index);
+    });
+    document.getElementById('btn-next').disabled = false;
+  }
+
+  function goNext() {
+    if (answers[currentQ] === undefined) return;
+    if (currentQ < 7) {
+      currentQ++;
+      renderQuestion();
+    } else {
+      showResult();
+    }
+  }
+
+  function goBack() {
+    if (currentQ > 0) {
+      currentQ--;
+      renderQuestion();
+    }
+  }
+
+  function showResult() {
+    const scores = {};
+    answers.forEach((answerIndex, qIndex) => {
+      const archetype = questions[qIndex].options[answerIndex].archetype;
+      scores[archetype] = (scores[archetype] || 0) + 1;
+    });
+
+    // Find highest score, use Q8 as tiebreaker
+    let maxScore = 0;
+    Object.values(scores).forEach(s => { if (s > maxScore) maxScore = s; });
+    const tied = Object.keys(scores).filter(k => scores[k] === maxScore);
+
+    let winner;
+    if (tied.length === 1) {
+      winner = tied[0];
+    } else {
+      // Use Q8 answer as tiebreaker
+      const q8Archetype = questions[7].options[answers[7]].archetype;
+      winner = tied.includes(q8Archetype) ? q8Archetype : tied[0];
+    }
+
+    const result = archetypes[winner];
+    document.getElementById('result-symbol').textContent = result.symbol;
+    document.getElementById('result-name').textContent = result.name;
+    document.getElementById('result-subtitle').textContent = result.subtitle;
+    document.getElementById('result-description').textContent = result.description;
+    document.getElementById('result-gift').textContent = result.gift;
+    document.getElementById('result-shadow').textContent = result.shadow;
+    document.getElementById('result-invitation').textContent = result.invitation;
+
+    showScreen('screen-result');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function retakeQuiz() {
+    answers = [];
+    currentQ = 0;
+    showScreen('screen-email');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
