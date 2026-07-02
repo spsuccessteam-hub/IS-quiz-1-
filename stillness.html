@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Indigo Sol Stillness Reflection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Pinyon+Script&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blush: #F5EBEC;
+    --cream: #FCFDF7;
+    --gold: #C9A96E;
+    --gold-soft: #C9A96E33;
+    --ink: #3A3436;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 64px 28px 100px;
+  }
+
+  .symbol {
+    text-align: center;
+    color: var(--gold);
+    font-size: 22px;
+    margin-bottom: 18px;
+    letter-spacing: 0.15em;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: clamp(32px, 6vw, 46px);
+    text-align: center;
+    margin: 0 0 6px;
+    letter-spacing: 0.01em;
+  }
+
+  .tagline {
+    font-family: 'Pinyon Script', cursive;
+    text-align: center;
+    color: var(--gold);
+    font-size: 26px;
+    margin: 0 0 40px;
+  }
+
+  .intro {
+    text-align: center;
+    font-size: 17px;
+    color: #5c5457;
+    max-width: 480px;
+    margin: 0 auto 8px;
+  }
+
+  .intro + .intro {
+    margin-bottom: 44px;
+  }
+
+  .card {
+    background: var(--blush);
+    border-radius: 18px;
+    padding: 36px 30px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 0 rgba(201, 169, 110, 0.25) inset;
+  }
+
+  .q-count {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .q-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0 0 22px;
+    line-height: 1.4;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .option {
+    display: block;
+    background: var(--cream);
+    border: 1.5px solid transparent;
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-size: 16px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    color: var(--ink);
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.2s ease, transform 0.15s ease, background 0.2s ease;
+  }
+
+  .option:hover {
+    border-color: var(--gold);
+  }
+
+  .option:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  .option.selected {
+    border-color: var(--gold);
+    background: #fff;
+  }
+
+  .progress-track {
+    height: 3px;
+    background: var(--gold-soft);
+    border-radius: 3px;
+    margin-bottom: 40px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--gold);
+    width: 0%;
+    transition: width 0.4s ease;
+  }
+
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+  }
+
+  .back-link {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    color: #8b8285;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px 4px;
+    visibility: hidden;
+  }
+
+  .back-link.visible { visibility: visible; }
+
+  .start-screen { text-align: center; }
+
+  .begin-btn {
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--gold);
+    color: #fff;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 999px;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .begin-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(201,169,110,0.35); }
+  .begin-btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+  .no-wrong {
+    font-size: 14px;
+    color: #8b8285;
+    letter-spacing: 0.03em;
+    margin-top: 28px;
+  }
+
+  .result-screen { display: none; text-align: center; }
+
+  .result-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  .result-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 6vw, 40px);
+    font-weight: 500;
+    margin: 0 0 26px;
+  }
+
+  .result-body {
+    font-size: 18px;
+    color: #4a4345;
+    max-width: 480px;
+    margin: 0 auto 32px;
+    text-align: left;
+  }
+
+  .affirmation-card {
+    background: var(--blush);
+    border-radius: 16px;
+    padding: 28px 30px;
+    margin: 0 auto 32px;
+    max-width: 480px;
+  }
+
+  .affirmation-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .affirmation-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 21px;
+    font-weight: 500;
+  }
+
+  .closing-line {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-style: italic;
+    color: #5c5457;
+    max-width: 460px;
+    margin: 0 auto 40px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--gold);
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    padding: 16px 36px;
+    border-radius: 999px;
+    cursor: pointer;
+    margin-bottom: 16px;
+  }
+
+  .retake {
+    display: block;
+    background: none;
+    border: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    color: #8b8285;
+    text-decoration: underline;
+    cursor: pointer;
+    margin: 0 auto;
+  }
+
+  .quiz-screen { display: none; }
+  .quiz-screen.active, .start-screen.active, .result-screen.active { display: block; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+
+  @media (max-width: 480px) {
+    .card { padding: 28px 22px; }
+    .wrap { padding: 48px 20px 80px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="symbol">✦</div>
+  <h1>The Stillness Reflection</h1>
+  <p class="tagline">We need your light. Allow the stillness.</p>
+
+  <div class="start-screen active" id="startScreen">
+    <p class="intro">Stillness is not something you have to earn, and it is not the same as doing nothing. It is simply the space where you can finally hear yourself again.</p>
+    <p class="intro">This reflection is not here to measure how still you are. It is just a moment to notice how much space you're currently giving yourself to pause.</p>
+    <button class="begin-btn" onclick="beginQuiz()">Begin the Reflection</button>
+    <p class="no-wrong">There are no right or wrong answers.</p>
+  </div>
+
+  <div class="quiz-screen" id="quizScreen">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="card">
+      <div class="q-count" id="qCount">Question 1 of 5</div>
+      <p class="q-text" id="qText"></p>
+      <div class="options" id="optionsWrap"></div>
+    </div>
+    <div class="nav-row">
+      <button class="back-link" id="backBtn" onclick="goBack()">← Back</button>
+    </div>
+  </div>
+
+  <div class="result-screen" id="resultScreen">
+    <div class="result-eyebrow">Your Reflection</div>
+    <h2 class="result-title" id="resultTitle"></h2>
+    <p class="result-body" id="resultBody"></p>
+
+    <div class="affirmation-card">
+      <div class="affirmation-label">Affirmation</div>
+      <p class="affirmation-text" id="resultAffirmation"></p>
+    </div>
+
+    <p class="closing-line">This is Indigo Sol's aim: an invitation to expand your belief of possibility, one letter, one reflection, one awareness at a time.</p>
+
+    <a class="cta-btn" href="https://shop.indigosol.com.au" id="ctaBtn">Receive Your Letter</a>
+    <button class="retake" onclick="restartQuiz()">Take the reflection again</button>
+  </div>
+
+</div>
+
+<script>
+  const questions = [
+    {
+      text: "When your day finally goes quiet, I tend to:",
+      options: [
+        { label: "Actually sit in it and let myself settle", tone: "A" },
+        { label: "Notice the quiet, then reach for something to fill it", tone: "B" },
+        { label: "Barely notice it's happened before I'm moving again", tone: "C" }
+      ]
+    },
+    {
+      text: "The last time I sat with nothing to do, on purpose, was:",
+      options: [
+        { label: "Recently, and it felt easy", tone: "A" },
+        { label: "A while ago, I keep meaning to", tone: "B" },
+        { label: "Honestly, I can't remember", tone: "C" }
+      ]
+    },
+    {
+      text: "When I imagine slowing down, my first reaction is:",
+      options: [
+        { label: "Relief", tone: "A" },
+        { label: "A mix of relief and guilt", tone: "B" },
+        { label: "Restlessness, like I should be doing something else", tone: "C" }
+      ]
+    },
+    {
+      text: "Right now, my relationship with rest feels most like:",
+      options: [
+        { label: "Something I allow myself without much resistance", tone: "A" },
+        { label: "Something I know I need, but rarely give myself", tone: "B" },
+        { label: "Something that feels almost unfamiliar", tone: "C" }
+      ]
+    },
+    {
+      text: "If I'm honest, what I most need more of right now is:",
+      options: [
+        { label: "Depth, going further into the stillness I already have", tone: "A" },
+        { label: "Permission, to actually stop without guilt", tone: "B" },
+        { label: "Space, any space at all, to simply pause", tone: "C" }
+      ]
+    }
+  ];
+
+  const results = {
+    A: {
+      title: "Your Stillness Is Settled",
+      body: "You already know how to be still, and that is not a small thing. You let quiet arrive without rushing to fill it, and that space is likely where a lot of your clarity comes from. Keep protecting it. It's easy to let a full life slowly crowd this out without noticing.",
+      affirmation: "I protect my stillness because it protects me."
+    },
+    B: {
+      title: "Your Stillness Is Waiting",
+      body: "You know stillness is there, you can feel it calling, but something keeps pulling you past it. That's not failure, it's just where you are right now. The pause doesn't have to be long or perfect to count. Even a few minutes, chosen on purpose, is enough to begin.",
+      affirmation: "I am allowed to stop, even for a moment."
+    },
+    C: {
+      title: "Your Stillness Is Ready to Be Found",
+      body: "Life has likely been asking a lot of you, and stillness may feel like something other people have time for, not you. That's worth noticing gently, not judging. You don't need a retreat or a perfect quiet morning. You just need one small, honest pause to start remembering what it feels like.",
+      affirmation: "I am allowed to slow down, starting now."
+    }
+  };
+
+  let current = 0;
+  const answers = [];
+
+  function beginQuiz() {
+    document.getElementById('startScreen').classList.remove('active');
+    document.getElementById('quizScreen').classList.add('active');
+    renderQuestion();
+  }
+
+  function renderQuestion() {
+    const q = questions[current];
+    document.getElementById('qCount').textContent = `Question ${current + 1} of ${questions.length}`;
+    document.getElementById('qText').textContent = q.text;
+    document.getElementById('progressFill').style.width = `${(current / questions.length) * 100}%`;
+    document.getElementById('backBtn').classList.toggle('visible', current > 0);
+
+    const wrap = document.getElementById('optionsWrap');
+    wrap.innerHTML = '';
+    q.options.forEach((opt) => {
+      const btn = document.createElement('button');
+      btn.className = 'option';
+      btn.textContent = opt.label;
+      btn.setAttribute('aria-label', opt.label);
+      if (answers[current] === opt.tone) btn.classList.add('selected');
+      btn.onclick = () => selectOption(opt.tone);
+      wrap.appendChild(btn);
+    });
+  }
+
+  function selectOption(tone) {
+    answers[current] = tone;
+    if (current < questions.length - 1) {
+      current++;
+      renderQuestion();
+    } else {
+      showResult();
+    }
+  }
+
+  function goBack() {
+    if (current > 0) {
+      current--;
+      renderQuestion();
+    }
+  }
+
+  function showResult() {
+    document.getElementById('progressFill').style.width = '100%';
+    const counts = { A: 0, B: 0, C: 0 };
+    answers.forEach(t => counts[t]++);
+    let winner = 'A';
+    let max = -1;
+    ['A', 'B', 'C'].forEach(t => {
+      if (counts[t] > max) { max = counts[t]; winner = t; }
+    });
+    const tied = ['A','B','C'].filter(t => counts[t] === max);
+    if (tied.length > 1) {
+      winner = answers[questions.length - 1];
+    }
+
+    const r = results[winner];
+    document.getElementById('resultTitle').textContent = r.title;
+    document.getElementById('resultBody').textContent = r.body;
+    document.getElementById('resultAffirmation').textContent = r.affirmation;
+
+    document.getElementById('quizScreen').classList.remove('active');
+    document.getElementById('resultScreen').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function restartQuiz() {
+    current = 0;
+    answers.length = 0;
+    document.getElementById('resultScreen').classList.remove('active');
+    document.getElementById('startScreen').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
