@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Indigo Sol Belief Reflection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Pinyon+Script&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blush: #F5EBEC;
+    --cream: #FCFDF7;
+    --gold: #C9A96E;
+    --gold-soft: #C9A96E33;
+    --ink: #3A3436;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 64px 28px 100px;
+  }
+
+  .symbol {
+    text-align: center;
+    color: var(--gold);
+    font-size: 22px;
+    margin-bottom: 18px;
+    letter-spacing: 0.15em;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: clamp(32px, 6vw, 46px);
+    text-align: center;
+    margin: 0 0 6px;
+    letter-spacing: 0.01em;
+  }
+
+  .tagline {
+    font-family: 'Pinyon Script', cursive;
+    text-align: center;
+    color: var(--gold);
+    font-size: 26px;
+    margin: 0 0 40px;
+  }
+
+  .intro {
+    text-align: center;
+    font-size: 17px;
+    color: #5c5457;
+    max-width: 480px;
+    margin: 0 auto 8px;
+  }
+
+  .intro + .intro {
+    margin-bottom: 44px;
+  }
+
+  .card {
+    background: var(--blush);
+    border-radius: 18px;
+    padding: 36px 30px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 0 rgba(201, 169, 110, 0.25) inset;
+  }
+
+  .q-count {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .q-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0 0 22px;
+    line-height: 1.4;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .option {
+    display: block;
+    background: var(--cream);
+    border: 1.5px solid transparent;
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-size: 16px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    color: var(--ink);
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.2s ease, transform 0.15s ease, background 0.2s ease;
+  }
+
+  .option:hover {
+    border-color: var(--gold);
+  }
+
+  .option:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  .option.selected {
+    border-color: var(--gold);
+    background: #fff;
+  }
+
+  .progress-track {
+    height: 3px;
+    background: var(--gold-soft);
+    border-radius: 3px;
+    margin-bottom: 40px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--gold);
+    width: 0%;
+    transition: width 0.4s ease;
+  }
+
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+  }
+
+  .back-link {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    color: #8b8285;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px 4px;
+    visibility: hidden;
+  }
+
+  .back-link.visible { visibility: visible; }
+
+  /* Intro screen */
+  .start-screen { text-align: center; }
+
+  .begin-btn {
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--gold);
+    color: #fff;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 999px;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .begin-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(201,169,110,0.35); }
+  .begin-btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+  .no-wrong {
+    font-size: 14px;
+    color: #8b8285;
+    letter-spacing: 0.03em;
+    margin-top: 28px;
+  }
+
+  /* Result screen */
+  .result-screen { display: none; text-align: center; }
+
+  .result-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  .result-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 6vw, 40px);
+    font-weight: 500;
+    margin: 0 0 26px;
+  }
+
+  .result-body {
+    font-size: 18px;
+    color: #4a4345;
+    max-width: 480px;
+    margin: 0 auto 32px;
+    text-align: left;
+  }
+
+  .affirmation-card {
+    background: var(--blush);
+    border-radius: 16px;
+    padding: 28px 30px;
+    margin: 0 auto 32px;
+    max-width: 480px;
+  }
+
+  .affirmation-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .affirmation-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 21px;
+    font-weight: 500;
+  }
+
+  .closing-line {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-style: italic;
+    color: #5c5457;
+    max-width: 460px;
+    margin: 0 auto 40px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--gold);
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    padding: 16px 36px;
+    border-radius: 999px;
+    cursor: pointer;
+    margin-bottom: 16px;
+  }
+
+  .retake {
+    display: block;
+    background: none;
+    border: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    color: #8b8285;
+    text-decoration: underline;
+    cursor: pointer;
+    margin: 0 auto;
+  }
+
+  .quiz-screen { display: none; }
+  .quiz-screen.active, .start-screen.active, .result-screen.active { display: block; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+
+  @media (max-width: 480px) {
+    .card { padding: 28px 22px; }
+    .wrap { padding: 48px 20px 80px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="symbol">✦</div>
+  <h1>The Belief Reflection</h1>
+  <p class="tagline">We need your light. Allow the stillness.</p>
+
+  <!-- START SCREEN -->
+  <div class="start-screen active" id="startScreen">
+    <p class="intro">Belief is not something you either have or don't have. It moves. Some days it feels wide open. Some days it needs a little more evidence before it moves at all. Both are honest places to stand.</p>
+    <p class="intro">This reflection is not here to measure you or to tell you what you should believe. It is simply a moment to notice where your belief currently sits, so you can meet it exactly there.</p>
+    <button class="begin-btn" onclick="beginQuiz()">Begin the Reflection</button>
+    <p class="no-wrong">There are no right or wrong answers.</p>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div class="quiz-screen" id="quizScreen">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="card">
+      <div class="q-count" id="qCount">Question 1 of 5</div>
+      <p class="q-text" id="qText"></p>
+      <div class="options" id="optionsWrap"></div>
+    </div>
+    <div class="nav-row">
+      <button class="back-link" id="backBtn" onclick="goBack()">← Back</button>
+    </div>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div class="result-screen" id="resultScreen">
+    <div class="result-eyebrow">Your Reflection</div>
+    <h2 class="result-title" id="resultTitle"></h2>
+    <p class="result-body" id="resultBody"></p>
+
+    <div class="affirmation-card">
+      <div class="affirmation-label">Affirmation</div>
+      <p class="affirmation-text" id="resultAffirmation"></p>
+    </div>
+
+    <p class="closing-line">This is Indigo Sol's aim: an invitation to expand your belief of possibility, one letter, one reflection, one awareness at a time.</p>
+
+    <a class="cta-btn" href="https://shop.indigosol.com.au" id="ctaBtn">Receive Your Letter</a>
+    <button class="retake" onclick="restartQuiz()">Take the reflection again</button>
+  </div>
+
+</div>
+
+<script>
+  const questions = [
+    {
+      text: "When something feels possible but unproven, I tend to:",
+      options: [
+        { label: "Feel pulled toward it before I can explain why", tone: "A" },
+        { label: "Sit with it for a while before I know how I feel", tone: "B" },
+        { label: "Notice the doubt first, then decide what to do with it", tone: "C" }
+      ]
+    },
+    {
+      text: "The voice in my head most often says:",
+      options: [
+        { label: "Let's see what happens", tone: "A" },
+        { label: "Maybe, we'll see", tone: "B" },
+        { label: "That's probably not for me", tone: "C" }
+      ]
+    },
+    {
+      text: "When a dream I've been holding doesn't happen the way I imagined, I usually:",
+      options: [
+        { label: "Trust that something else is unfolding", tone: "A" },
+        { label: "Feel unsettled, then slowly find my footing again", tone: "B" },
+        { label: "Take it as proof I should expect less next time", tone: "C" }
+      ]
+    },
+    {
+      text: "Right now, my relationship with possibility feels most like:",
+      options: [
+        { label: "A door that's already open", tone: "A" },
+        { label: "A door I'm standing in front of, deciding", tone: "B" },
+        { label: "A door I forgot was even there", tone: "C" }
+      ]
+    },
+    {
+      text: "If I'm honest, the belief I most want to expand right now is belief in:",
+      options: [
+        { label: "What's coming", tone: "A" },
+        { label: "Myself, specifically", tone: "B" },
+        { label: "The idea that things can actually change", tone: "C" }
+      ]
+    }
+  ];
+
+  const results = {
+    A: {
+      title: "Your Belief Is Expanding",
+      body: "Something in you is already reaching. You are the kind of person who tends to say yes before you have every answer, and that willingness is trust. Keep noticing where this openness wants to grow further. There is likely more room here than you think.",
+      affirmation: "I allow myself to believe before I have proof."
+    },
+    B: {
+      title: "Your Belief Is Stirring",
+      body: "You are somewhere in between, not stuck, just honest. Something is shifting, and shifting doesn't always feel comfortable while it's happening. This space is not a place to rush through. It is often exactly where the most real growth begins.",
+      affirmation: "I am allowed to take my time believing."
+    },
+    C: {
+      title: "Your Belief Is Ready to Be Gently Questioned",
+      body: "You may be carrying a belief or two that narrowed what feels possible for you, and you're noticing it now, which is the beginning of change. This isn't a flaw to fix. It's simply an invitation to look a little closer at where that belief came from, and whether it's still true.",
+      affirmation: "I am allowed to question what I once accepted as fact."
+    }
+  };
+
+  let current = 0;
+  const answers = [];
+
+  function beginQuiz() {
+    document.getElementById('startScreen').classList.remove('active');
+    document.getElementById('quizScreen').classList.add('active');
+    renderQuestion();
+  }
+
+  function renderQuestion() {
+    const q = questions[current];
+    document.getElementById('qCount').textContent = `Question ${current + 1} of ${questions.length}`;
+    document.getElementById('qText').textContent = q.text;
+    document.getElementById('progressFill').style.width = `${(current / questions.length) * 100}%`;
+    document.getElementById('backBtn').classList.toggle('visible', current > 0);
+
+    const wrap = document.getElementById('optionsWrap');
+    wrap.innerHTML = '';
+    q.options.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'option';
+      btn.textContent = opt.label;
+      btn.setAttribute('aria-label', opt.label);
+      if (answers[current] === opt.tone) btn.classList.add('selected');
+      btn.onclick = () => selectOption(opt.tone);
+      wrap.appendChild(btn);
+    });
+  }
+
+  function selectOption(tone) {
+    answers[current] = tone;
+    if (current < questions.length - 1) {
+      current++;
+      renderQuestion();
+    } else {
+      showResult();
+    }
+  }
+
+  function goBack() {
+    if (current > 0) {
+      current--;
+      renderQuestion();
+    }
+  }
+
+  function showResult() {
+    document.getElementById('progressFill').style.width = '100%';
+    const counts = { A: 0, B: 0, C: 0 };
+    answers.forEach(t => counts[t]++);
+    let winner = 'A';
+    let max = -1;
+    ['A', 'B', 'C'].forEach(t => {
+      if (counts[t] > max) { max = counts[t]; winner = t; }
+    });
+    // tie-breaker: use last question's answer
+    const tied = ['A','B','C'].filter(t => counts[t] === max);
+    if (tied.length > 1) {
+      winner = answers[questions.length - 1];
+    }
+
+    const r = results[winner];
+    document.getElementById('resultTitle').textContent = r.title;
+    document.getElementById('resultBody').textContent = r.body;
+    document.getElementById('resultAffirmation').textContent = r.affirmation;
+
+    document.getElementById('quizScreen').classList.remove('active');
+    document.getElementById('resultScreen').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function restartQuiz() {
+    current = 0;
+    answers.length = 0;
+    document.getElementById('resultScreen').classList.remove('active');
+    document.getElementById('startScreen').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
